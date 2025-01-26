@@ -65,6 +65,14 @@ function Sidebar() {
         </li>
         <li className="sidebarFriend">
           <img src={Pic} alt="" className="sidebarFriendImg" />
+          <span className="sidebarFriendName">Naruto Uzumaki</span>
+        </li>
+        <li className="sidebarFriend">
+          <img src={Pic} alt="" className="sidebarFriendImg" />
+          <span className="sidebarFriendName">Sub Zero</span>
+        </li>
+        <li className="sidebarFriend">
+          <img src={Pic} alt="" className="sidebarFriendImg" />
           <span className="sidebarFriendName">FisherMan</span>
         </li>
         <li className="sidebarFriend">
