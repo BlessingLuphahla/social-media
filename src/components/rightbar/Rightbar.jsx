@@ -2,7 +2,7 @@ import React from 'react'
 
 function Rightbar() {
   return (
-    <div>Rightbar</div>
+    <div className='rightbar'>Rightbar</div>
   )
 }
 
