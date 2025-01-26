@@ -4,10 +4,7 @@ import { Search } from '@mui/icons-material'
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import profilePicture from '../../../assets/images/person/apollo.jpg';
-
-// ...
-
+import ProfilePic from '../../assets/images/person/apollo.jpg';
 
 function TopBar() {
     return (
@@ -41,7 +38,8 @@ function TopBar() {
                         <NotificationsIcon></NotificationsIcon>
                         <span className="topbarIconBadge">1</span>
                     </div>
-                    <img src={profilePicture} alt="profile picture" className="topbarImg" />
+                    
+                    <img src={ProfilePic} alt="profile picture" className="topbarImg" />
 
                 </div>
             </div>
