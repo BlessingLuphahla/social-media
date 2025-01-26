@@ -1,12 +1,21 @@
-import React from 'react'
-import './sidebar.css'
-import { RssFeed, Chat, PlayCircleFilled, Group, Bookmark, Help, Work, Event, School } from '@mui/icons-material'
-import Pic from '../../assets/images/person/liu-kang.jpg'
-
+import React from "react";
+import "./sidebar.css";
+import {
+  RssFeed,
+  Chat,
+  PlayCircleFilled,
+  Group,
+  Bookmark,
+  Help,
+  Work,
+  Event,
+  School,
+} from "@mui/icons-material";
+import Pic from "../../assets/images/person/liu-kang.jpg";
+import Pic2 from "../../assets/images/person/apollo.jpg";
 function Sidebar() {
   return (
-    <div className='sidebar'>
-
+    <div className="sidebar">
       <div className="sidebarWrapper">
         <ul className="sidebarList">
           <li className="sidebarListItem">
@@ -47,7 +56,7 @@ function Sidebar() {
           </li>
         </ul>
         <button className="sidebarButton">Show More</button>
-        <hr className='sidebarHr' />
+        <hr className="sidebarHr" />
       </div>
       <ul className="sidebarFriendList">
         <li className="sidebarFriend">
@@ -63,9 +72,15 @@ function Sidebar() {
           <span className="sidebarFriendName">Jay Die</span>
         </li>
       </ul>
-      <div className='sidebarFooter'></div>
+      <div className="sidebarFooter">
+        <img src={Pic2} alt="" className="sidebarFooterImg" />
+        <div className="sidebarFooterInfo">
+          <span className="sidebarFooterName">Redd Axe</span> <br />
+          <span className="sidebarFooterTitle">Software Engineer</span>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Sidebar 
+export default Sidebar;
