@@ -1,10 +1,11 @@
 import React from 'react'
-import PersonIcon from '@mui/icons-material/Person';
+import './home.css'
+import TopBar from '../topbar/TopBar';
+
 function Home() {
   return (
     <div>
-        this is home page
-        <PersonIcon></PersonIcon>
+        <TopBar></TopBar>
     </div>
   )
 }
