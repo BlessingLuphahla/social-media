@@ -1,62 +1,66 @@
+import Img_1 from "../assets/images/person/1.jpg";
+import Img_2 from "../assets/images/person/2.jpg";
+import Img_3 from "../assets/images/person/3.jpg";
+import Img_4 from "../assets/images/person/4.jpg";
+import Img_5 from "../assets/images/person/5.jpg";
+import Img_6 from "../assets/images/person/6.jpg";
+import Img_7 from "../assets/images/person/7.jpg";
+import Img_8 from "../assets/images/person/8.jpg";
+import Img_9 from "../assets/images/person/9.jpg";
+import Img_10 from "../assets/images/person/10.jpg";
+
 export const people = [
   {
     id: 1,
-    name: "John Doe",
-    img: "/assets/images/person/john-doe.jpg",
-    location: "New York, USA",
+    name: "Trevor Noah",
+    img: Img_1,
   },
   {
     id: 2,
     name: "Jane Doe",
-    img: "/assets/images/person/jane-doe.jpg",
-    location: "London, UK",
+    img: Img_2,
   },
   {
     id: 3,
     name: "Bob Smith",
-    img: "/assets/images/person/bob-smith.jpg",
-    location: "Paris, France",
+    img: Img_3,
   },
   {
     id: 4,
     name: "Alice Johnson",
-    img: "/assets/images/person/alice-johnson.jpg",
-    location: "Tokyo, Japan",
+    img: Img_4,
   },
   {
     id: 5,
     name: "Mike Brown",
-    img: "/assets/images/person/mike-brown.jpg",
-    location: "Berlin, Germany",
+    img: Img_5,
   },
   {
     id: 6,
     name: "Sarah Lee",
-    img: "/assets/images/person/sarah-lee.jpg",
-    location: "Sydney, Australia",
+    img: Img_6,
   },
   {
     id: 7,
     name: "David Kim",
-    img: "/assets/images/person/david-kim.jpg",
-    location: "Seoul, South Korea",
+    img: Img_7,
   },
   {
     id: 8,
     name: "Emily Chen",
-    img: "/assets/images/person/emily-chen.jpg",
-    location: "Beijing, China",
+    img: Img_8,
   },
   {
     id: 9,
     name: "Kevin White",
-    img: "/assets/images/person/kevin-white.jpg",
-    location: "Los Angeles, USA",
+    img: Img_9,
   },
   {
     id: 10,
     name: "Olivia Martin",
-    img: "/assets/images/person/olivia-martin.jpg",
-    location: "Madrid, Spain",
+    img: Img_10,
   },
 ];
+
+
+export default people

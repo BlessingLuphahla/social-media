@@ -60,18 +60,13 @@ function Sidebar() {
         <hr className="sidebarHr" />
       </div>
       <ul className="sidebarFriendList">
-        <li className="sidebarFriend">
-          <img src={Pic} alt="" className="sidebarFriendImg" />
-          <span className="sidebarFriendName">Pablo Picasso</span>
-        </li>
+        {people.map((person, index) => (
+          <li key={person.id + index} className="sidebarFriend">
+            <img src={person.img} alt="" className="sidebarFriendImg" />
+            <span className="sidebarFriendName">{person.name}</span>
+          </li>
+        ))}
       </ul>
-
-      {people.map((name, index) => (
-        <li key={index} className="sidebarFriend">
-          <img src={Pic} alt="" className="sidebarFriendImg" />
-          <span className="sidebarFriendName">{name}</span>
-        </li>
-      ))}
 
       <div className="sidebarFooter">
         <img src={Pic2} alt="" className="sidebarFooterImg" />
