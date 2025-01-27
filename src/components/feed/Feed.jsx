@@ -7,9 +7,6 @@ function Feed() {
     <div className="feed">
       <div className="feedWrapper">
         <Share></Share>
-        <div className="feedTitle">
-          <h4>Home</h4>
-        </div>
       </div>
     </div>
   );
