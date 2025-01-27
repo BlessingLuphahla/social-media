@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import Pic from "../../assets/images/person/liu-kang.jpg";
 import Pic2 from "../../assets/images/person/apollo.jpg";
+import people from "../../components/people";
 function Sidebar() {
   return (
     <div className="sidebar">
@@ -63,23 +64,15 @@ function Sidebar() {
           <img src={Pic} alt="" className="sidebarFriendImg" />
           <span className="sidebarFriendName">Pablo Picasso</span>
         </li>
-        <li className="sidebarFriend">
-          <img src={Pic} alt="" className="sidebarFriendImg" />
-          <span className="sidebarFriendName">Naruto Uzumaki</span>
-        </li>
-        <li className="sidebarFriend">
-          <img src={Pic} alt="" className="sidebarFriendImg" />
-          <span className="sidebarFriendName">Sub Zero</span>
-        </li>
-        <li className="sidebarFriend">
-          <img src={Pic} alt="" className="sidebarFriendImg" />
-          <span className="sidebarFriendName">FisherMan</span>
-        </li>
-        <li className="sidebarFriend">
-          <img src={Pic} alt="" className="sidebarFriendImg" />
-          <span className="sidebarFriendName">Jay Die</span>
-        </li>
       </ul>
+
+      {people.map((name, index) => (
+        <li key={index} className="sidebarFriend">
+          <img src={Pic} alt="" className="sidebarFriendImg" />
+          <span className="sidebarFriendName">{name}</span>
+        </li>
+      ))}
+
       <div className="sidebarFooter">
         <img src={Pic2} alt="" className="sidebarFooterImg" />
         <div className="sidebarFooterInfo">
