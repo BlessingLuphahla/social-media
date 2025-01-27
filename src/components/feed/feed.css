@@ -2,5 +2,52 @@
     flex: 5;
 }
 
+.feedWrapper {
+    padding: 20px;
+}
 
+.feedTitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.feedInputContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.feedInput {
+    flex: 1;
+    border: none;
+    background-color: #f0f2f5;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.feedInput:focus {
+    outline: none;
+    background-color: white;
+    border: 1px solid #1877f2;
+}
+
+.feedButton {
+    border: none;
+    background-color: #1877f2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.feedButton:hover {
+    background-color: #166fe5;
+}
 
