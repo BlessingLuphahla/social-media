@@ -3,6 +3,7 @@ import './rightbar.css';
 import proPic from '../../assets/images/person/9.jpg';
 import proPic2 from '../../assets/images/person/3.jpg';
 import gift from '../../assets/images/gift.jpg';
+import ad from '../../assets/images/ad.jpg';
 
 function Rightbar() {
   return (
@@ -14,6 +15,7 @@ function Rightbar() {
             <b>Carly Mushkit</b> and <b>3 other friends</b> have a birthday today.
           </span>
         </div>
+        <img src={ad} alt="" className="rightbarAd" />
 
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
