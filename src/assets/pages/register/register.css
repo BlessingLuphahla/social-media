@@ -1,0 +1,96 @@
+.Register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.RegisterWrapper {
+  width: 75%;
+  height: 70%;
+  display: flex;
+}
+
+.RegisterLeft,
+.RegisterRight {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.RegisterLogo {
+  font-size: 50px;
+  font-weight: 800;
+  color: var(--dark-red);
+  margin-bottom: 10px;
+}
+
+.RegisterDesc {
+  font-size: 24px;
+}
+
+.RegisterBox {
+  height: 300px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.RegisterInput {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  font-size: 18px;
+  padding-left: 20px;
+}
+
+.RegisterInput:focus {
+  outline: none;
+}
+
+.RegisterButton {
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--dark-red);
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+}
+
+.RegisterButton:disabled {
+  cursor: not-allowed;
+}
+
+.RegisterRegisterButton {
+  top: 80px;
+  right: 20px;
+  background-color: #42b72a;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+}
+
+.RegisterForgot {
+  text-align: center;
+  color: var(--dark-red);
+  cursor: pointer;
+}
+
+.RegisterRegisterButton:hover {
+  background-color: #2e8b22;
+}
+
+.RegisterRegisterButton:disabled {
+  cursor: not-allowed;
+}
+
