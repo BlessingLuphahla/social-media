@@ -5,15 +5,23 @@ import Post from "../post/Post";
 import posts from "../../components/posts";
 
 function Feed() {
-  
   return (
     <div className="feed">
       <div className="feedWrapper">
         <Share></Share>
       </div>
       <div>
-        {posts.map((post) => (
-          <Post date={post.date} comments={post.comments} likes={post.likes} author={post.author} content={post.content} img={post.img} key={post.id} post={post} />
+        {posts.map((post, index) => (
+          <Post
+            key={post.id + index + 1}
+            date={post.date}
+            comments={post.comments}
+            likes={post.likes}
+            author={post.author}
+            content={post.content}
+            img={post.img}
+            post={post}
+          />
         ))}
       </div>
     </div>

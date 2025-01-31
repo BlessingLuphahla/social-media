@@ -66,12 +66,11 @@
     align-items: center;
 }
 
-.likeIcon {
+.postIcons {
     width: 24px;
     height: 24px;
     margin-right: 5px;
     cursor: pointer;
-    color: red;
 }
 
 .postLikeCounter {
@@ -81,4 +80,11 @@
 .postCommentText {
     cursor: pointer;
     font-size: 15px;
+}
+
+.commentIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    cursor: pointer;
 }

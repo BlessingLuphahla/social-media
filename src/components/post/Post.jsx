@@ -1,7 +1,5 @@
 import React from 'react'
-import personOne from '../../assets/images/person/apollo.jpg'
-import postPic from '../../assets/images/person/liu-kang.jpg'
-import { MoreVert, Favorite } from '@mui/icons-material'
+import { MoreVert, Favorite, Comment,ThumbUp  } from '@mui/icons-material'
 import './post.css'
 
 function Post(post) {
@@ -24,10 +22,12 @@ function Post(post) {
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">
-                    <Favorite className="likeIcon"/>
+                    <ThumbUp htmlColor='blue' className="postIcons"/>
+                    <Favorite htmlColor='red' className="postIcons"/>
                     <span className="postLikeCounter">{post.likes} likes</span>
                 </div>
                 <div className="postBottomRight">
+                    <Comment className="commentIcon"/>
                     <span className="postCommentText">{post.comments} comment</span>
                 </div>
             </div>
