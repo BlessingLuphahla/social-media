@@ -1,8 +1,32 @@
-# React + Vite
+\# Social Media Feed Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A social media feed application built with React, showcasing a list of posts with likes and comments.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* [Features](#features)
+* [Getting Started](#getting-started)
+* [Contributing](#contributing)
+* [License](#license)
+
+## Features
+
+* Display a list of posts with author, content, likes, and comments
+* Render individual posts with a `Post` component
+* Use a mock API to fetch post data
+
+## Getting Started
+
+1. Clone the repository: `git clone https://github.com/BlessingLuphahla/social-media.git`
+2. Install dependencies: `npm install` or `yarn install`
+3. Start the development server: `npm run dev` or `yarn start`
+4. Open your browser at `http://localhost:5173` or the path shown by the server in the terminal
+
+
+## Contributing
+
+Contributions are welcome! Please submit a pull request with a clear description of your changes.
+
+## License
+
+This project is licensed under the Apache License. See [LICENSE](http://www.apache.org/licenses/) for details.
