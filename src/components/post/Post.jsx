@@ -28,7 +28,8 @@ function Post(post) {
                 </div>
                 <div className="postBottomRight">
                     <Comment className="commentIcon"/>
-                    <span className="postCommentText">{post.comments} comment</span>
+                    <span className="postCommentText">{post.comments}
+                    </span>
                 </div>
             </div>
         </div>
