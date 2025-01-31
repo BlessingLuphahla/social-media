@@ -1,6 +1,6 @@
 import React from 'react'
 import personOne from '../../assets/images/person/apollo.jpg'
-import postPic from '../../assets/images/person/apollo.jpg'
+import postPic from '../../assets/images/person/liu-kang.jpg'
 import { MoreVert, Favorite } from '@mui/icons-material'
 import './post.css'
 
@@ -24,8 +24,7 @@ function Post() {
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">
-                    <img className="likeIcon" src="/assets/like.png" alt="" />
-                    <img className="likeIcon" src="/assets/heart.png" alt="" /> 
+                    <Favorite htmlColor='red' />
                     <span className="postLikeCounter">1 like</span>
                 </div>
                 <div className="postBottomRight">
