@@ -1,6 +1,6 @@
 import "./rightbar.css";
-import ProfileRightBar from "./profilerightbar";
-import HomeRightBar from "./homerightbar";
+import ProfileRightBar from "./ProfileRightBar";
+import HomeRightBar from "./HomeRightBar";
 
 
 function Rightbar({ profile }) {
