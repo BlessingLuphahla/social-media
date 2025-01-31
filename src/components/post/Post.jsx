@@ -4,14 +4,14 @@ import postPic from '../../assets/images/person/liu-kang.jpg'
 import { MoreVert, Favorite } from '@mui/icons-material'
 import './post.css'
 
-function Post() {
+function Post(post) {
   return (
     <div className='post'>
         <div className="postWrapper">
             <div className="postTop">
                 <div className="postTopLeft">
-                    <img className="postProfileImg" src={personOne} alt="" />
-                    <span className="postUsername">Apollo</span>
+                    <img className="postProfileImg" src={post.img} alt="" />
+                    <span className="postUsername">{post.author}</span>
                     <span className="postDate">1 min ago</span>
                 </div>
                 <div className="postTopRight">
@@ -19,8 +19,8 @@ function Post() {
                 </div>
             </div>
             <div className="postCenter">
-                <span className="postText">This is a post</span>
-                <img className="postImg" src={postPic} alt="" />
+                <span className="postText">{post.content}</span>
+                <img className="postImg" src={post.img} alt="" />
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">
