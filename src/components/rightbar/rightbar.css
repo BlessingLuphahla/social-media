@@ -1,5 +1,5 @@
 .rightbar {
-  flex: 1;
+  flex: 1.3;
   border-right: 0.5px solid rgb(230, 227, 227);
   min-height: 100vh;
   background-color: white;
@@ -66,25 +66,6 @@
   font-weight: 500;
   margin-bottom: 5px;
 }
-
-.rightbarInfo {
-  margin-bottom: 30px;
-}
-
-.rightbarInfoItem {
-  margin-bottom: 10px;
-}
-
-.rightbarInfoKey {
-  font-weight: 500;
-  margin-right: 15px;
-  color: #555;
-}
-
-.rightbarInfoValue {
-  font-weight: 300;
-}
-
 
 .rightbarAd {
   width: 100%;
