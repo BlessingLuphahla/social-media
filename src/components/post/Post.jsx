@@ -12,7 +12,7 @@ function Post(post) {
                 <div className="postTopLeft">
                     <img className="postProfileImg" src={post.img} alt="" />
                     <span className="postUsername">{post.author}</span>
-                    <span className="postDate">1 min ago</span>
+                    <span className="postDate">{post.date}</span>
                 </div>
                 <div className="postTopRight">
                     <MoreVert />

@@ -12,6 +12,7 @@ const posts = [
       likes: 10,
       comments: 5,
       img: Img_1,
+      date:'1 min ago'
     },
     {
       id: 2,
@@ -20,6 +21,7 @@ const posts = [
       likes: 5,
       comments: 2,
       img: Img_2,
+      date:'5 min ago'
     },
     {
       id: 3,
@@ -27,7 +29,8 @@ const posts = [
       content: "This is a longer post with more content.",
       likes: 20,
       comments: 10,
-      img: Img_3
+      img: Img_3,
+      date:'10 min ago'
     },
     {
       id: 4,
@@ -35,7 +38,8 @@ const posts = [
       content: "Another post!",
       likes: 8,
       comments: 3,
-      img: Img_4
+      img: Img_4,
+      date:'15 min ago'
     },
     {
       id: 5,
@@ -43,7 +47,8 @@ const posts = [
       content: "This is my last post for now.",
       likes: 15,
       comments: 6,
-      img: Img_5
+      img: Img_5,
+      date:'1 hour min ago'
     },
   ];
 
