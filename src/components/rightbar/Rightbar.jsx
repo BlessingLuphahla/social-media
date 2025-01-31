@@ -1,4 +1,3 @@
-import React from "react";
 import './rightbar.css';
 import proPic from '../../assets/images/person/9.jpg';
 import proPic2 from '../../assets/images/person/3.jpg';

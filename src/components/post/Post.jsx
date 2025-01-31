@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { MoreVert, Favorite, Comment,ThumbUp  } from '@mui/icons-material'
 import './post.css'
 
