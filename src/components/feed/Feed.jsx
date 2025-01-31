@@ -13,7 +13,7 @@ function Feed() {
       </div>
       <div>
         {posts.map((post) => (
-          <Post author={post.author} content={post.content} img={post.img} key={post.id} post={post} />
+          <Post comments={post.comments} likes={post.likes} author={post.author} content={post.content} img={post.img} key={post.id} post={post} />
         ))}
       </div>
     </div>

@@ -24,11 +24,11 @@ function Post(post) {
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">
-                    <Favorite htmlColor='red' />
-                    <span className="postLikeCounter">1 like</span>
+                    <Favorite className="likeIcon"/>
+                    <span className="postLikeCounter">{post.likes} likes</span>
                 </div>
                 <div className="postBottomRight">
-                    <span className="postCommentText">1 comment</span>
+                    <span className="postCommentText">{post.comments} comment</span>
                 </div>
             </div>
         </div>

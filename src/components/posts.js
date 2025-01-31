@@ -11,7 +11,7 @@ const posts = [
       content: "This is my first post!",
       likes: 10,
       comments: 5,
-      img: Img_1
+      img: Img_1,
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ const posts = [
       content: "Hello world!",
       likes: 5,
       comments: 2,
-      img: Img_2
+      img: Img_2,
     },
     {
       id: 3,
