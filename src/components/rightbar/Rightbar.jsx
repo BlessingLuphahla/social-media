@@ -3,15 +3,13 @@ import ProfileRightBar from "./ProfileRightBar";
 import HomeRightBar from "./HomeRightBar";
 
 
-function Rightbar({ profile }) {
+function Rightbar( prop ) {
   
 
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {/* {profile ? <ProfileRightBar /> : <HomeRightBar />} */}
-        <ProfileRightBar />
-        {/* <HomeRightBar /> */}
+        {prop.profile ? <ProfileRightBar /> : <HomeRightBar />}
       </div>
     </div>
   );
