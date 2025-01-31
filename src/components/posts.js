@@ -3,11 +3,6 @@ import Img_2 from "../assets/images/person/2.jpg";
 import Img_3 from "../assets/images/person/3.jpg";
 import Img_4 from "../assets/images/person/4.jpg";
 import Img_5 from "../assets/images/person/5.jpg";
-import Img_6 from "../assets/images/person/6.jpg";
-import Img_7 from "../assets/images/person/7.jpg";
-import Img_8 from "../assets/images/person/8.jpg";
-import Img_9 from "../assets/images/person/9.jpg";
-import Img_10 from "../assets/images/person/10.jpg";
 
 const posts = [
     {
