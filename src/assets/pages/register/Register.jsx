@@ -14,8 +14,7 @@ function Register() {
           <div className="RegisterBox">
             <input  type="email" placeholder="Email" className="RegisterInput" />
             <input type="password" placeholder="Password" className="RegisterInput" />
-            <button className="RegisterButton">Log In</button>
-            <span className="RegisterForgot">Forgot Password?</span>
+            <button className="RegisterButton">Sign Up</button>
             <button className="RegisterRegisterButton">
               Login to Account
             </button>

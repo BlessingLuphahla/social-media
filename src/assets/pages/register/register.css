@@ -69,6 +69,7 @@
 }
 
 .RegisterRegisterButton {
+  height: 50px;
   top: 80px;
   right: 20px;
   background-color: #42b72a;
