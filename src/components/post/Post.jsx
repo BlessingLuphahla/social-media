@@ -1,4 +1,7 @@
 import React from 'react'
+import personOne from '../../assets/images/person/apollo.jpg'
+import postPic from '../../assets/images/person/apollo.jpg'
+import { MoreVert, Favorite } from '@mui/icons-material'
 import './post.css'
 
 function Post() {
@@ -7,17 +10,17 @@ function Post() {
         <div className="postWrapper">
             <div className="postTop">
                 <div className="postTopLeft">
-                    <img className="postProfileImg" src="https://via.placeholder.com/40" alt="" />
-                    <span className="postUsername">John Doe</span>
+                    <img className="postProfileImg" src={personOne} alt="" />
+                    <span className="postUsername">Apollo</span>
                     <span className="postDate">1 min ago</span>
                 </div>
                 <div className="postTopRight">
-                    <span className="postTopRightIcon">...</span>
+                    <MoreVert />
                 </div>
             </div>
             <div className="postCenter">
                 <span className="postText">This is a post</span>
-                <img className="postImg" src="" alt="" />
+                <img className="postImg" src={postPic} alt="" />
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">
