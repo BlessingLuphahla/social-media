@@ -1,10 +1,10 @@
 
-import Home from './assets/pages/home/Home'
+import Profile from './assets/pages/profile/Profile'
 
 function App() {
   return (
     <div>
-      <Home></Home>
+      <Profile/>
     </div>
   )
 }
