@@ -81,12 +81,6 @@
   font-size: 16px;
 }
 
-.RegisterForgot {
-  text-align: center;
-  color: var(--dark-red);
-  cursor: pointer;
-}
-
 .RegisterRegisterButton:hover {
   background-color: #2e8b22;
 }
