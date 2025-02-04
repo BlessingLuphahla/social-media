@@ -32,7 +32,7 @@
 }
 
 .loginBox {
-  height: 350px;
+  height: 360px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
@@ -59,7 +59,7 @@
 }
 
 .loginButton {
-  height: 50px;
+  height: 55px;
   top: 80px;
   right: 20px;
   background-color: #42b72a;
@@ -87,5 +87,6 @@
   text-align: center;
   color: var(--dark-red);
   cursor: pointer;
+  margin: 5px 0px;
 }
 

@@ -3,6 +3,7 @@ import "./login.css";
 import { Link } from "react-router-dom";
 import { LoginCall } from "../../../apiCalls";
 import { AuthContext } from "../../../context/AuthContext";
+import CircularIndeterminate from "../../../components/progress";
 
 function Login() {
   const email = useRef();
@@ -16,6 +17,7 @@ function Login() {
       password: password.current.value,
     };
     console.log("Submitting:", userCredentials);
+
     LoginCall(userCredentials, dispatch);
   }
 
@@ -40,7 +42,7 @@ function Login() {
               placeholder="Email"
               className="loginInput"
               required
-            />
+            /> <br />
             <input
               ref={password}
               type="password"
@@ -49,13 +51,16 @@ function Login() {
               required
               minLength="6"
             />
+            {isFetching && <CircularIndeterminate> </CircularIndeterminate>}
+
             <button className="loginButton" disabled={isFetching}>
               {isFetching ? "Logging in..." : "Login"}
             </button>
+
             {error && <span className="loginError">{error.message}</span>}
             <span className="loginForgot">Forgot Password?</span>
-            <Link to="/register">
-              <button className="loginButton">Create a New Account</button>
+            <Link to="/register" className="loginButton">
+              Create a New Account
             </Link>
           </form>
         </div>
