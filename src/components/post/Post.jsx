@@ -7,6 +7,7 @@ import {
 import "./post.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Post(post) {
   const [likes, setLike] = useState(post.likes.length);
@@ -32,15 +33,18 @@ function Post(post) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              className="postProfileImg"
-              src={
-                user.profilePic
-                  ? PF + "images/person/" + user.profilePic
-                  : "defaultProfile.jpg"
-              }
-              alt=""
-            />
+            <Link to={`/profile/${user.username}`}>
+              <img
+                className="postProfileImg"
+                src={
+                  user.profilePic
+                    ? PF + "images/person/" + user.profilePic
+                    : "defaultProfile.jpg"
+                }
+                alt=""
+              />
+            </Link>
+
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{post.date}</span>
           </div>
