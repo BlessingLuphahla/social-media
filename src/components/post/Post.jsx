@@ -18,14 +18,12 @@ function Post(post) {
   };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get(
-        "/api/posts/timeline/679e4e6193e9f62abca45056"
-      );
-      setPosts(res.data);
+    const fetchUsers = async () => {
+      const res = await axios.get("/api/users/");
+      setUsers(res.data);
       console.log(res);
     };
-    fetchPosts();
+    fetchUsers();
   }, []);
 
   return (
