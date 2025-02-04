@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function Post(post) {
-  const [likes, setLike] = useState(post.likes);
+  const [likes, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const likeHandler = () => {

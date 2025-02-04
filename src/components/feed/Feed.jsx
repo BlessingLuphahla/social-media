@@ -36,7 +36,7 @@ function Feed() {
                 key={post._id + index + 1}
                 date={timeAgo}
                 comments={post.comments}
-                likes={post.likes.length}
+                likes={post.likes}
                 content={post.desc}
                 img={PF + 'images/person/' + post.img}
                 userId={post.userId}
