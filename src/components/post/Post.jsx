@@ -18,21 +18,20 @@ function Post(post) {
   };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await axios.get("/api/users/");
-      setUsers(res.data);
-      console.log(res);
+    const fetchUser = async () => {
+      const res = await axios.get("/api/users/" + post.userId);
+      setUser(res.data);
     };
-    fetchUsers();
-  }, []);
+    fetchUser();
+  }, [post.userId]);
 
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img className="postProfileImg" src={post.img} alt="" />
-            <span className="postUsername">{post.author}</span>
+            <img className="postProfileImg" src={user.profilePic} alt="" />
+            <span className="postUsername">{user.username}</span>
             <span className="postDate">{post.date}</span>
           </div>
           <div className="postTopRight">
@@ -55,7 +54,7 @@ function Post(post) {
               htmlColor="red"
               className="postIcons"
             />
-            <span className="postLikeCounter">{likes} likes</span>
+            <span className="postLikeCounter">{likes || 0} likes</span>
           </div>
           <div className="postBottomRight">
             <Comment className="commentIcon" />
