@@ -3,7 +3,7 @@ import "./login.css";
 import { Link } from "react-router-dom";
 import { LoginCall } from "../../../apiCalls";
 import { AuthContext } from "../../../context/AuthContext";
-import CircularIndeterminate from "../../../components/progress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Login() {
   const email = useRef();
@@ -16,7 +16,6 @@ function Login() {
       email: email.current.value,
       password: password.current.value,
     };
-    console.log("Submitting:", userCredentials);
 
     LoginCall(userCredentials, dispatch);
   }
@@ -51,10 +50,9 @@ function Login() {
               required
               minLength="6"
             />
-            {isFetching && <CircularIndeterminate> </CircularIndeterminate>}
 
             <button className="loginButton" disabled={isFetching}>
-              {isFetching ? "Logging in..." : "Login"}
+              {isFetching ? <CircularProgress color="inherit" size="20px" /> : "Login"}
             </button>
 
             {error && <span className="loginError">{error.message}</span>}
