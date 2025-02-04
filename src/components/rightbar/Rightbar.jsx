@@ -4,9 +4,11 @@ import proPic from "../../assets/images/person/6.jpg";
 import proPic2 from "../../assets/images/person/3.jpg";
 import ad from "../../assets/images/ad.jpg";
 import gift from "../../assets/images/gift.jpg";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
-function Rightbar({user}) {
-  
+function Rightbar({ user }) {
   const HomeRightBar = () => {
     return (
       <>
@@ -41,6 +43,30 @@ function Rightbar({user}) {
   };
 
   const ProfileRightBar = () => {
+    const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+
+    const [followingUsers, setFollowingUsers] = useState([]);
+    useEffect(() => {
+      const fetchFollowings = async () => {
+        if (!user?.followings) return;
+
+        try {
+          const usersData = await Promise.all(
+            user.followings.map((followingId) =>
+              axios
+                .get(`/api/users?userId=${followingId}`)
+                .then((res) => res.data)
+            )
+          );
+          setFollowingUsers(usersData);
+        } catch (error) {
+          console.error("Error fetching followings:", error);
+        }
+      };
+
+      fetchFollowings();
+    }, []);
+
     return (
       <>
         <h4 className="rightbarTitle">User information</h4>
@@ -65,16 +91,18 @@ function Rightbar({user}) {
             <span className="rightbarFollowingName">Rick Sanchez</span>
           </div>
 
-          {user.followings?.map((following) => (
-            <div key={following.id} className="rightbarFollowing">
+          {followingUsers.map((user) => (
+            <div key={user._id} className="rightbarFollowing">
               <img
-                src={following.profilePic}
+                src={
+                  user.profilePic
+                    ? PF + "images/person/" + user.profilePic
+                    : PF + "images/person/defaultProfile.jpg"
+                }
                 alt=""
                 className="rightbarFollowingImg"
               />
-              <span className="rightbarFollowingName">
-                {following.username}
-              </span>
+              <span className="rightbarFollowingName">{user.username}</span>
             </div>
           ))}
         </div>
