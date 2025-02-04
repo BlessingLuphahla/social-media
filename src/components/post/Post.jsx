@@ -34,7 +34,11 @@ function Post(post) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={PF + "images/person/" + user.profilePic}
+              src={
+                user.profilePic
+                  ? PF + "images/person/" + user.profilePic
+                  : "defaultProfile.jpg"
+              }
               alt=""
             />
             <span className="postUsername">{user.username}</span>
@@ -46,7 +50,7 @@ function Post(post) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.content}</span>
-          <img className="postImg" src={ post.img} alt="" />
+          <img className="postImg" src={post.img} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
