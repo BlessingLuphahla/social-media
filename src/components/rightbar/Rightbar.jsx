@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
 import "./rightbar.css";
 import proPic from "../../assets/images/person/6.jpg";
 import proPic2 from "../../assets/images/person/3.jpg";
 import ad from "../../assets/images/ad.jpg";
 import gift from "../../assets/images/gift.jpg";
 
-function Rightbar(prop) {
+function Rightbar({user}) {
+  
   const HomeRightBar = () => {
     return (
       <>
@@ -45,15 +47,15 @@ function Rightbar(prop) {
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">Bulawayo</span>
+            <span className="rightbarInfoValue">{user.city}</span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">Magwegwe North</span>
+            <span className="rightbarInfoValue">{user.from}</span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Relationship:</span>
-            <span className="rightbarInfoValue">Single</span>
+            <span className="rightbarInfoValue">{user.relationship}</span>
           </div>
         </div>
         <h4 className="rightbarTitle">User friends</h4>
@@ -62,26 +64,19 @@ function Rightbar(prop) {
             <img src={proPic} alt="" className="rightbarFollowingImg" />
             <span className="rightbarFollowingName">Rick Sanchez</span>
           </div>
-          <div className="rightbarFollowing">
-            <img src={proPic2} alt="" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Beth Smith</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img src={proPic} alt="" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Rick Sanchez</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img src={proPic2} alt="" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Beth Smith</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img src={proPic} alt="" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Rick Sanchez</span>
-          </div>
-          <div className="rightbarFollowing">
-            <img src={proPic2} alt="" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Beth Smith</span>
-          </div>
+
+          {user.followings?.map((following) => (
+            <div key={following.id} className="rightbarFollowing">
+              <img
+                src={following.profilePic}
+                alt=""
+                className="rightbarFollowingImg"
+              />
+              <span className="rightbarFollowingName">
+                {following.username}
+              </span>
+            </div>
+          ))}
         </div>
       </>
     );
@@ -90,7 +85,7 @@ function Rightbar(prop) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {prop.profile ? <ProfileRightBar /> : <HomeRightBar />}
+        {user ? <ProfileRightBar /> : <HomeRightBar />}
       </div>
     </div>
   );
