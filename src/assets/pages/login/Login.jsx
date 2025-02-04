@@ -1,24 +1,27 @@
-import { useRef } from "react";
+import { useContext, useRef, useEffect } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
+import { LoginCall } from "../../../apiCalls";
+import { AuthContext } from "../../../context/AuthContext";
 
 function Login() {
   const email = useRef();
   const password = useRef();
+  const { user, isFetching, error, dispatch } = useContext(AuthContext);
 
   function handleFormSubmit(e) {
     e.preventDefault();
-
-    const user = {
+    const userCredentials = {
       email: email.current.value,
       password: password.current.value,
     };
-
-    email.current.value = "";
-    password.current.value = "";
-
-    console.log(user);
+    console.log("Submitting:", userCredentials);
+    LoginCall(userCredentials, dispatch);
   }
+
+  useEffect(() => {
+    console.log("Updated user:", user);
+  }, [user]);
 
   return (
     <div className="login">
@@ -36,18 +39,23 @@ function Login() {
               type="email"
               placeholder="Email"
               className="loginInput"
+              required
             />
             <input
               ref={password}
               type="password"
               placeholder="Password"
               className="loginInput"
+              required
+              minLength="6"
             />
-
-            <button className="loginButton">Login</button>
+            <button className="loginButton" disabled={isFetching}>
+              {isFetching ? "Logging in..." : "Login"}
+            </button>
+            {error && <span className="loginError">{error.message}</span>}
             <span className="loginForgot">Forgot Password?</span>
-            <Link to="/register" className="loginButton">
-              Create a New Account
+            <Link to="/register">
+              <button className="loginButton">Create a New Account</button>
             </Link>
           </form>
         </div>
