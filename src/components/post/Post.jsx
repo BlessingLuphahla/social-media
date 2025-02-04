@@ -5,15 +5,28 @@ import {
   FavoriteOutlined,
 } from "@mui/icons-material";
 import "./post.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Post(post) {
   const [likes, setLike] = useState(post.likes);
   const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState({});
   const likeHandler = () => {
     setLike(isLiked ? likes - 1 : likes + 1);
     setIsLiked(!isLiked);
   };
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get(
+        "/api/posts/timeline/679e4e6193e9f62abca45056"
+      );
+      setPosts(res.data);
+      console.log(res);
+    };
+    fetchPosts();
+  }, []);
 
   return (
     <div className="post">
