@@ -32,14 +32,13 @@
 }
 
 .loginBox {
-  height: 500px;
-  padding: 30px;
+  height: 300px;
+  padding: 20px;
   background-color: white;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
 
 .loginInput {
@@ -69,9 +68,9 @@
   cursor: not-allowed;
 }
 
-.loginRegisterButton {
-  top: 80px;
+.loginButton {
   height: 50px;
+  top: 80px;
   right: 20px;
   background-color: #42b72a;
   cursor: pointer;
@@ -82,17 +81,11 @@
   font-size: 16px;
 }
 
-.loginForgot {
-  text-align: center;
-  color: var(--dark-red);
-  cursor: pointer;
-}
-
-.loginRegisterButton:hover {
+.loginButton:hover {
   background-color: #2e8b22;
 }
 
-.loginRegisterButton:disabled {
+.loginButton:disabled {
   cursor: not-allowed;
 }
 
