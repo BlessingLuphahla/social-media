@@ -89,3 +89,10 @@
   cursor: not-allowed;
 }
 
+
+.loginForgot {
+  text-align: center;
+  color: var(--dark-red);
+  cursor: pointer;
+}
+

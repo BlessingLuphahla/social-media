@@ -13,7 +13,11 @@ function Register() {
 
         <div className="RegisterRight">
           <div className="RegisterBox">
-            <input type="text" placeholder="Username" className="RegisterInput" />
+            <input
+              type="text"
+              placeholder="Username"
+              className="RegisterInput"
+            />
             <input type="email" placeholder="Email" className="RegisterInput" />
             <input
               type="password"
@@ -25,11 +29,9 @@ function Register() {
               placeholder="Password Again"
               className="RegisterInput"
             />
-            <button className="RegisterButton">Log In</button>
-            <span className="RegisterForgot">Forgot Password?</span>
-            <button className="RegisterButton">
-              Create a New Account
-            </button>
+
+            <button className="RegisterButton">Sign In</button>
+            <button className="RegisterButton">Login to Account</button>
           </div>
         </div>
       </div>

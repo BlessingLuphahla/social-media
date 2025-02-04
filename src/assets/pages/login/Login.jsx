@@ -18,8 +18,10 @@ function Login() {
               placeholder="Password"
               className="loginInput"
             />
-            <button className="loginButton">Sign In</button>
-            <button className="loginButton">Login to Account</button>
+
+            <button className="loginButton">Sign Up</button>
+            <span className="loginForgot">Forgot Password?</span>
+            <button className="loginButton">Create a New Account</button>
           </div>
         </div>
       </div>
