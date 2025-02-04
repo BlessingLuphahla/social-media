@@ -4,8 +4,12 @@ import Post from "../post/Post";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
+
+
 function Feed() {
   const [posts, setPosts] = useState([]);
+
+  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -34,7 +38,7 @@ function Feed() {
                 comments={post.comments}
                 likes={post.likes.length}
                 content={post.desc}
-                img={post.img}
+                img={PF + 'images/person/' + post.img}
                 userId={post.userId}
               />
             );

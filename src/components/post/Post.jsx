@@ -25,12 +25,18 @@ function Post(post) {
     fetchUser();
   }, [post.userId]);
 
+  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img className="postProfileImg" src={user.profilePic} alt="" />
+            <img
+              className="postProfileImg"
+              src={PF + "images/person/" + user.profilePic}
+              alt=""
+            />
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{post.date}</span>
           </div>
@@ -40,7 +46,7 @@ function Post(post) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.content}</span>
-          <img className="postImg" src={post.img} alt="" />
+          <img className="postImg" src={ post.img} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
