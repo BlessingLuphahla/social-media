@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
 import { LoginCall } from "../../../apiCalls";
@@ -20,10 +20,6 @@ function Login() {
     LoginCall(userCredentials, dispatch);
   }
 
-  useEffect(() => {
-    console.log("Updated user:", user);
-  }, [user]);
-
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -41,7 +37,8 @@ function Login() {
               placeholder="Email"
               className="loginInput"
               required
-            /> <br />
+            />
+            <br />
             <input
               ref={password}
               type="password"
@@ -50,15 +47,21 @@ function Login() {
               required
               minLength="6"
             />
-
             <button className="loginButton" disabled={isFetching}>
-              {isFetching ? <CircularProgress color="inherit" size="20px" /> : "Login"}
+              {isFetching ? (
+                <CircularProgress color="inherit" size="20px" />
+              ) : (
+                "Login"
+              )}
             </button>
-
             {error && <span className="loginError">{error.message}</span>}
             <span className="loginForgot">Forgot Password?</span>
             <Link to="/register" className="loginButton">
-              Create a New Account
+              {isFetching ? (
+                <CircularProgress color="inherit" size="20px" />
+              ) : (
+                "Create a New Account"
+              )}
             </Link>
           </form>
         </div>
