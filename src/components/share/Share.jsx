@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import "./share.css";
 import profilePic from "../../assets/images/person/apollo.jpg";
 import {
@@ -7,10 +6,9 @@ import {
   LocationOn,
   EmojiEmotions,
 } from "@mui/icons-material";
-import { AuthContext } from "../../context/AuthContext";
 
 function Share() {
-  const user = useContext(AuthContext).user;
+  // const user = useContext(AuthContext).user;
 
   // console.log(user);
 

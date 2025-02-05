@@ -27,7 +27,6 @@ function Register() {
       try {
         axios.post("/api/auth/register", user);
         navigate("/login");
-        console.log(user);
           
       } catch (err) {
         console.log(err);
