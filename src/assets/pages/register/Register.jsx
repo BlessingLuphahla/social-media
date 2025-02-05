@@ -1,12 +1,15 @@
 import "./register.css";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { useRef } from "react";
+import axios from "axios";
 
 function Register() {
   const username = useRef();
   const email = useRef();
   const password = useRef();
   const passwordAgain = useRef();
+
+  const history = useHistory();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +23,14 @@ function Register() {
         password: password.current.value,
         passwordAgain: passwordAgain.current.value,
       };
-      console.log(user);
+
+      try {
+        axios.post("/api/auth/register", user);
+        history.push("/login");
+          
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
