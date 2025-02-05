@@ -2,14 +2,19 @@
 import "./feed.css";
 import Share from "../share/Share";
 import Post from "../post/Post";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
+import { AuthContext } from "../../context/AuthContext";
 
-function Feed({ username }) {
+function Feed() {
   const [posts, setPosts] = useState([]);
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+
+  const user = useContext(AuthContext).user;
+
+  const username = user.username;
 
   useEffect(() => {
     const fetchPosts = async () => {

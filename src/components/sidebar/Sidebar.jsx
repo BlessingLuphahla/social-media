@@ -11,7 +11,6 @@ import {
   Event,
   School,
 } from "@mui/icons-material";
-import Pic from "../../assets/images/person/liu-kang.jpg";
 import Pic2 from "../../assets/images/person/apollo.jpg";
 import people from "../../components/people";
 function Sidebar() {

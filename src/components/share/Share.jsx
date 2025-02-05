@@ -9,6 +9,9 @@ import {
 } from "@mui/icons-material";
 
 function Share() {
+
+  use
+
   return (
     <div className="share">
       <div className="shareWrapper">

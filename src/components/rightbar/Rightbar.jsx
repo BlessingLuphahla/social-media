@@ -5,10 +5,14 @@ import proPic2 from "../../assets/images/person/3.jpg";
 import ad from "../../assets/images/ad.jpg";
 import gift from "../../assets/images/gift.jpg";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
-function Rightbar({ user }) {
+function Rightbar() {
+
+  const user = useContext(AuthContext).user;
+
   const HomeRightBar = () => {
     return (
       <>
