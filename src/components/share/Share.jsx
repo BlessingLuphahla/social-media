@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import "./share.css";
 import profilePic from "../../assets/images/person/apollo.jpg";
 import {
@@ -7,10 +7,12 @@ import {
   LocationOn,
   EmojiEmotions,
 } from "@mui/icons-material";
+import { AuthContext } from "../../context/AuthContext";
 
 function Share() {
+  const user = useContext(AuthContext).user;
 
-  use
+  // console.log(user);
 
   return (
     <div className="share">
@@ -30,7 +32,7 @@ function Share() {
               <span className="shareOptionText">Photo or Video</span>
             </div>
             <div className="shareOption">
-              <Label  htmlColor="blue" className="shareIcon" />
+              <Label htmlColor="blue" className="shareIcon" />
               <span className="shareOptionText">Tag</span>
             </div>
             <div className="shareOption">
