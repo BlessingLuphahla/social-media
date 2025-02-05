@@ -12,12 +12,13 @@ function Login() {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    const userCredentials = {
-      email: email.current.value,
-      password: password.current.value,
-    };
 
-    LoginCall(userCredentials, dispatch);
+    LoginCall(
+      { email: email.current.value,
+        password: password.current.value,
+      },
+      dispatch
+    );
   }
 
   return (

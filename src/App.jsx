@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* If user is logged in, show Home, otherwise show Register */}
-        <Route path="/" element={user ? <Home /> : <Navigate to="/register" />} />
+        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
 
         {/* If user is logged in, redirect to Home, otherwise show Login */}
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />

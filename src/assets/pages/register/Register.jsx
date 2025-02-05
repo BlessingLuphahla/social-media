@@ -1,7 +1,29 @@
 import "./register.css";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 function Register() {
+  const username = useRef();
+  const email = useRef();
+  const password = useRef();
+  const passwordAgain = useRef();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (password.current.value !== passwordAgain.current.value) {
+      passwordAgain.current.setCustomValidity("Passwords don't match!");
+    } else {
+      const user = {
+        username: username.current.value,
+        email: email.current.value,
+        password: password.current.value,
+        passwordAgain: passwordAgain.current.value,
+      };
+      console.log(user);
+    }
+  };
+
   return (
     <div className="Register">
       <div className="RegisterWrapper">
@@ -13,27 +35,45 @@ function Register() {
         </div>
 
         <div className="RegisterRight">
-          <div className="RegisterBox">
+          <form onSubmit={handleFormSubmit} className="RegisterBox">
             <input
               type="text"
               placeholder="Username"
               className="RegisterInput"
+              ref={username}
+              required
             />
-            <input type="email" placeholder="Email" className="RegisterInput" />
             <input
+              ref={email}
+              type="email"
+              placeholder="Email"
+              className="RegisterInput"
+              required
+            />
+            <input
+              ref={password}
               type="password"
               placeholder="Password"
               className="RegisterInput"
+              required
+              minLength="6"
             />
             <input
+              ref={passwordAgain}
               type="password"
               placeholder="Password Again"
               className="RegisterInput"
+              required
+              minLength="6"
             />
 
-            <button className="RegisterButton">Sign In</button>
-            <Link to="/login" className="RegisterButton">Login to Account</Link>
-          </div>
+            <button type="submit" className="RegisterButton">
+              Sign In
+            </button>
+            <Link to="/login" className="RegisterButton">
+              Login to Account
+            </Link>
+          </form>
         </div>
       </div>
     </div>
