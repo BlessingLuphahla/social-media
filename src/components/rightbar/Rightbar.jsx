@@ -58,7 +58,7 @@ function Rightbar() {
           const usersData = await Promise.all(
             user.followings.map((followingId) =>
               axios
-                .get(`/api/users?userId=${followingId}`)
+                .get(`https://social-media-rest-api-xpqj.onrender.com/api/users?userId=${followingId}`)
                 .then((res) => res.data)
             )
           );

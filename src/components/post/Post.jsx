@@ -20,7 +20,7 @@ function Post(post) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("/api/users?userId=" + post.userId);
+      const res = await axios.get("https://social-media-rest-api-xpqj.onrender.com/api/users?userId=" + post.userId);
       setUser(res.data);
     };
     fetchUser();
