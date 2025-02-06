@@ -7,24 +7,23 @@ import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import { AuthContext } from "../../context/AuthContext";
 
-function Feed() {
+function Feed({username}) {
   const [posts, setPosts] = useState([]);
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
   const user = useContext(AuthContext).user;
 
-  const username = user.username;
 
   useEffect(() => {
     const fetchPosts = async () => {
       const res = username
         ? await axios.get(`https://social-media-rest-api-xpqj.onrender.com/api/posts/profile/${username}/`)
-        : await axios.get("https://social-media-rest-api-xpqj.onrender.com/api/posts/timeline/679e4e6193e9f62abca45056");
+        : await axios.get("https://social-media-rest-api-xpqj.onrender.com/api/posts/timeline/" + user._id);
       setPosts(res.data);
     };
     fetchPosts();
-  }, [username]);
+  }, [user._id, username]);
 
   return (
     <div className="feed">

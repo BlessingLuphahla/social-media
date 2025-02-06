@@ -30,8 +30,15 @@ function TopBar() {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <span className="topbarLink">HomePage</span>
-          <span className="topbarLink">Timeline</span>
+          <Link to="/" style={{ textDecoration: "none",color: "white" }}>
+            <span className="topbarLink">Home Page</span>
+          </Link>
+          <Link
+            to={`/profile/${user.username}`}
+            style={{ textDecoration: "none" , color: "white"}}
+          >
+            <span className="topbarLink">Timeline</span>
+          </Link>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
@@ -47,18 +54,17 @@ function TopBar() {
             <span className="topbarIconBadge">1</span>
           </div>
 
-          <img
-            src={
-              user.profilePic?
-              PF + "images/person/" + user.profilePic:
-              PF + "images/person/defaultProfile.jpg"
-            }
-
-
-
-            alt="profile picture"
-            className="topbarImg"
-          />
+          <Link to={`/profile/${user.username}`}>
+            <img
+              src={
+                user.profilePic
+                  ? PF + "images/person/" + user.profilePic
+                  : PF + "images/person/defaultProfile.jpg"
+              }
+              alt="profile picture"
+              className="topbarImg"
+            />
+          </Link>
         </div>
       </div>
     </div>
