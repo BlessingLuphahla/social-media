@@ -48,7 +48,14 @@ function TopBar() {
           </div>
 
           <img
-            src={PF + "images/person/" + user.profilePic}
+            src={
+              user.profilePic?
+              PF + "images/person/" + user.profilePic:
+              PF + "images/person/defaultProfile.jpg"
+            }
+
+
+
             alt="profile picture"
             className="topbarImg"
           />
