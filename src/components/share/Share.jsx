@@ -15,32 +15,31 @@ function Share() {
   const desc = useRef();
   const [file, setFile] = useState(null);
 
-  const handleFile = (e) => {
-    setFile(e.target.files[0]);
-  };
+  console.log("this is share");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =  async (e) => {
     e.preventDefault();
+
+    console.log("the thingies 1");
+
+
+    if (!desc.current.value.trim() && !file) {
+      console.log("Post content cannot be empty!");
+      return;
+    }
+
+    console.log("the thingies");
+
 
     const newPost = {
       userId: user._id,
-      desc:desc.current.value,
+      desc: desc.current.value,
     };
-    if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
-      newPost.img = fileName;
-      try {
-        await axios.post("/api/upload", data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
+
+    console.log(newPost);
+
     try {
       await axios.post("/api/posts", newPost);
-      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -71,14 +70,14 @@ function Share() {
             <label htmlFor="file" className="shareOption">
               <PermMedia htmlColor="tomato" className="shareIcon" />
               <span className="shareOptionText">Photo or Video</span>
-              <input
-                style={{ display: "none" }}
-                type="file"
-                id="file"
-                accept=".png,.jpg,.jpeg"
-                onChange={handleFile}
-              />
             </label>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              id="file"
+              accept=".png,.jpg,.jpeg"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
             <div className="shareOption">
               <Label htmlColor="blue" className="shareIcon" />
               <span className="shareOptionText">Tag</span>
