@@ -15,7 +15,6 @@ function Share() {
   const desc = useRef();
   const [file, setFile] = useState(null);
 
-  console.log("this is share");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,10 +26,6 @@ function Share() {
       return;
     }
 
-    console.log("Uploading post...");
-
-    console.log(file);
-    
 
     const newPost = {
       userId: user._id,
