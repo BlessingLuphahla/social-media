@@ -44,6 +44,7 @@ function Feed({username}) {
                 content={post.desc}
                 img={PF + "images/person/" + post.img}
                 userId={post.userId}
+                postId={post._id}
               />
             );
           })}

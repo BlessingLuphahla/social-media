@@ -5,26 +5,45 @@ import {
   FavoriteOutlined,
 } from "@mui/icons-material";
 import "./post.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function Post(post) {
   const [likes, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
-  const likeHandler = () => {
-    setLike(isLiked ? likes - 1 : likes + 1);
-    setIsLiked(!isLiked);
-  };
+  const { user: currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes]);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("https://social-media-rest-api-xpqj.onrender.com/api/users?userId=" + post.userId);
+      const res = await axios.get("/api/users?userId=" + post.userId);
       setUser(res.data);
     };
     fetchUser();
   }, [post.userId]);
+
+  const likeHandler = async () => {
+    try {
+      await axios.put("/api/posts/" + post.postId + "/like", {
+        userId: currentUser._id,
+      });
+      await axios.put("/api/users/" + currentUser._id, {
+        userId: currentUser._id,
+        likes: [...currentUser.likes, post.postId], // Create a new array instead of mutating
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    setLike(isLiked ? likes - 1 : likes + 1);
+    setIsLiked(!isLiked);
+  };
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 

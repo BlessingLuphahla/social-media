@@ -1,4 +1,3 @@
-import React from "react";
 import "./sidebar.css";
 import {
   RssFeed,
@@ -12,8 +11,40 @@ import {
   School,
 } from "@mui/icons-material";
 import Pic2 from "../../assets/images/person/apollo.jpg";
-import people from "../../components/people";
+import { useContext, useState } from "react";
+import { useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
+
 function Sidebar() {
+
+  const user = useContext(AuthContext).user;
+  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+
+  const [followingUsers, setFollowingUsers] = useState([]);
+  useEffect(() => {
+    const fetchFollowings = async () => {
+      if (!user?.followings) return;
+
+      try {
+        const usersData = await Promise.all(
+          user.followings.map((followingId) =>
+            axios
+              .get(
+                `/api/users?userId=${followingId}`
+              )
+              .then((res) => res.data)
+          )
+        );
+        setFollowingUsers(usersData);
+      } catch (error) {
+        console.error("Error fetching followings:", error);
+      }
+    };
+
+    fetchFollowings();
+  }, [user.followings]);
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -59,11 +90,19 @@ function Sidebar() {
         <hr className="sidebarHr" />
       </div>
       <ul className="sidebarFriendList">
-        {people.map((person, index) => (
-          <li key={person.id + index} className="sidebarFriend">
-            <img src={person.img} alt="" className="sidebarFriendImg" />
-            <span className="sidebarFriendName">{person.name}</span>
-          </li>
+        {followingUsers.map((user) => (
+          <div key={user._id} className="rightbarFollowing">
+            <img
+              src={
+                user.profilePic
+                  ? PF + "images/person/" + user.profilePic
+                  : PF + "images/person/defaultProfile.jpg"
+              }
+              alt=""
+              className="rightbarFollowingImg"
+            />
+            <span className="rightbarFollowingName">{user.username}</span>
+          </div>
         ))}
       </ul>
 
