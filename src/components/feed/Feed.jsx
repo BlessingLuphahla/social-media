@@ -18,8 +18,8 @@ function Feed({username}) {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = username
-        ? await axios.get(`https://social-media-rest-api-xpqj.onrender.com/api/posts/profile/${username}/`)
-        : await axios.get("https://social-media-rest-api-xpqj.onrender.com/api/posts/timeline/" + user._id);
+        ? await axios.get(`/api/posts/profile/${username}/`)
+        : await axios.get("/api/posts/timeline/" + user._id);
       setPosts(res.data);
     };
     fetchPosts();

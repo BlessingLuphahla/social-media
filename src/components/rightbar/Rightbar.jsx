@@ -58,7 +58,7 @@ function Rightbar() {
           const usersData = await Promise.all(
             user.followings.map((followingId) =>
               axios
-                .get(`https://social-media-rest-api-xpqj.onrender.com/api/users?userId=${followingId}`)
+                .get(`/api/users?userId=${followingId}`)
                 .then((res) => res.data)
             )
           );
@@ -90,10 +90,6 @@ function Rightbar() {
         </div>
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
-          <div className="rightbarFollowing">
-            <img src={proPic} alt="" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Rick Sanchez</span>
-          </div>
 
           {followingUsers.map((user) => (
             <div key={user._id} className="rightbarFollowing">

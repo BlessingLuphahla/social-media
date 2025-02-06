@@ -25,7 +25,7 @@ function Register() {
       };
 
       try {
-        axios.post("https://social-media-rest-api-xpqj.onrender.com/api/auth/register", user);
+        axios.post("/api/auth/register", user);
         navigate("/login");
           
       } catch (err) {

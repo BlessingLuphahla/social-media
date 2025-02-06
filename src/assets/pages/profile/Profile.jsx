@@ -16,7 +16,7 @@ function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
 
-      const res = await axios.get("https://social-media-rest-api-xpqj.onrender.com/api/users?username=" + username);
+      const res = await axios.get("/api/users?username=" + username);
       setUser(res.data);
     };
     fetchUser();

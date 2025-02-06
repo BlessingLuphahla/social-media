@@ -6,11 +6,13 @@ import {
   LocationOn,
   EmojiEmotions,
 } from "@mui/icons-material";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function Share() {
-  // const user = useContext(AuthContext).user;
+  const { user } = useContext(AuthContext);
 
-  // console.log(user);
+  console.log(user);
 
   return (
     <div className="share">
