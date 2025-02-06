@@ -10,7 +10,6 @@ import {
   Event,
   School,
 } from "@mui/icons-material";
-import Pic2 from "../../assets/images/person/apollo.jpg";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -107,7 +106,7 @@ function Sidebar() {
       </ul>
 
       <div className="sidebarFooter">
-        <img src={Pic2} alt="" className="sidebarFooterImg" />
+        <img src={''} alt="" className="sidebarFooterImg" />
         <div className="sidebarFooterInfo">
           <span className="sidebarFooterName">Redd Axe</span> <br />
           <span className="sidebarFooterTitle">Software Engineer</span>

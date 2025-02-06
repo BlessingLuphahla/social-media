@@ -1,7 +1,4 @@
-/* eslint-disable react/prop-types */
 import "./rightbar.css";
-import proPic from "../../assets/images/person/6.jpg";
-import proPic2 from "../../assets/images/person/3.jpg";
 import ad from "../../assets/images/ad.jpg";
 import gift from "../../assets/images/gift.jpg";
 import axios from "axios";
@@ -14,6 +11,32 @@ function Rightbar() {
   const user = useContext(AuthContext).user;
 
   const HomeRightBar = () => {
+
+    const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+
+    const [followingUsers, setFollowingUsers] = useState([]);
+    useEffect(() => {
+      const fetchFollowings = async () => {
+        if (!user?.followings) return;
+
+        try {
+          const usersData = await Promise.all(
+            user.followings.map((followingId) =>
+              axios
+                .get(`/api/users?userId=${followingId}`)
+                .then((res) => res.data)
+            )
+          );
+          setFollowingUsers(usersData);
+        } catch (error) {
+          console.error("Error fetching followings:", error);
+        }
+      };
+
+      fetchFollowings();
+    }, []);
+
+
     return (
       <>
         <div className="birthdayContainer">
@@ -27,20 +50,20 @@ function Rightbar() {
 
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
-          <li className="rightbarFriend">
-            <div className="rightbarProfileImgContainer">
-              <img className="rightbarProfileImg" src={proPic} alt="" />
-              <span className="rightbarOnline"></span>
-            </div>
-            <span className="rightbarUsername">Rick Sanchez</span>
-          </li>
-          <li className="rightbarFriend">
-            <div className="rightbarProfileImgContainer">
-              <img className="rightbarProfileImg" src={proPic2} alt="" />
-              <span className="rightbarOnline"></span>
-            </div>
-            <span className="rightbarUsername">Beth Smith</span>
-          </li>
+          {followingUsers.map((user) => (
+            <li className="rightbarFriend" key={user._id}>
+              <div className="rightbarProfileImgContainer">
+                <img className="rightbarProfileImg" 
+                src={user.profilePicture?
+                  PF + "images/person/" + user.profilePicture
+                  : PF +"images/person/" + "defaultProfile.jpg"
+                  } alt="" />
+                <span className="rightbarOnline"></span>
+              </div>
+              <span className="rightbarUsername">{user.username}</span>
+            </li>
+          ))}
+    
         </ul>
       </>
     );
