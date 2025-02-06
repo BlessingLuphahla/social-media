@@ -17,31 +17,46 @@ function Share() {
 
   console.log("this is share");
 
-  const handleSubmit =  async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("the thingies 1");
-
+    console.log("handle submit");
 
     if (!desc.current.value.trim() && !file) {
       console.log("Post content cannot be empty!");
       return;
     }
 
-    console.log("the thingies");
+    console.log("Uploading post...");
 
+    console.log(file);
+    
 
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
     };
 
-    console.log(newPost);
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("file", file);
+      data.append("name", fileName);
+      newPost.img = fileName; // Save filename to newPost
+
+      try {
+        await axios.post("/api/upload", data); // Upload file first
+      } catch (err) {
+        console.log("File upload failed:", err);
+        return;
+      }
+    }
 
     try {
       await axios.post("/api/posts", newPost);
+      console.log("Post shared successfully!");
     } catch (err) {
-      console.log(err);
+      console.log("Error creating post:", err);
     }
   };
 
@@ -65,7 +80,7 @@ function Share() {
           />
         </div>
         <hr className="shareHr" />
-        <form onSubmit={handleSubmit} className="shareBottom">
+        <form onSubmit={(e) => handleSubmit(e)} className="shareBottom">
           <div className="shareOptions">
             <label htmlFor="file" className="shareOption">
               <PermMedia htmlColor="tomato" className="shareIcon" />

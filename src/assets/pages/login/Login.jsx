@@ -48,7 +48,7 @@ function Login() {
               required
               minLength="6"
             />
-            <button className="loginButton" disabled={isFetching}>
+            <button type="submit" className="loginButton" disabled={isFetching}>
               {isFetching ? (
                 <CircularProgress color="inherit" size="20px" />
               ) : (
