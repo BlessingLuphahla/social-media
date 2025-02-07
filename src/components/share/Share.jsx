@@ -5,15 +5,25 @@ import {
   LocationOn,
   EmojiEmotions,
 } from "@mui/icons-material";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { Cancel } from "@mui/icons-material";
 
 function Share() {
   const { user } = useContext(AuthContext);
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
   const desc = useRef();
   const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    return () => {
+      if (file) {
+        URL.revokeObjectURL(file);
+      }
+    };
+  }, [file]);
+  
 
 
   const handleSubmit = async (e) => {
@@ -74,6 +84,15 @@ function Share() {
           />
         </div>
         <hr className="shareHr" />
+        {file && (
+          <div className="shareImgContainer">
+            <img src={URL.createObjectURL(file)} alt="" className="shareImg" />
+            <Cancel
+              className="shareCancel"
+              onClick={() => setFile(null)}
+            ></Cancel>
+          </div>
+        )}
         <form onSubmit={(e) => handleSubmit(e)} className="shareBottom">
           <div className="shareOptions">
             <label htmlFor="file" className="shareOption">
