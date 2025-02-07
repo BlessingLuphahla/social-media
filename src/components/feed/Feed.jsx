@@ -9,47 +9,81 @@ import { AuthContext } from "../../context/AuthContext";
 
 function Feed({ username }) {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);  // 🔹 Loading state
+  const [error, setError] = useState(null);      // 🔹 Error handling
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
-
-  const user = useContext(AuthContext).user;
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = username
-        ? await axios.get(`/api/posts/profile/${username}/`)
-        : await axios.get("/api/posts/timeline/" + user._id);
-      setPosts(
-        res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      );
+      if (!user) return; // 🔹 Ensure user exists before making API calls
+
+      try {
+        setLoading(true);
+        setError(null);
+        let res;
+
+        if (username) {
+          res = await axios.get(`/api/posts/profile/${username}/`);
+        } else {
+          res = await axios.get(`/api/posts/timeline/${user._id}`);
+        }
+
+        if (res?.data) {
+          setPosts(
+            res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          );
+        }
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+        setError("Failed to load posts. Try again later.");
+      } finally {
+        setLoading(false);
+      }
     };
+
     fetchPosts();
-  }, [user._id, username]);
+  }, [user, username]); // 🔹 Rerun only when user or username changes
 
   return (
     <div className="feed">
       <div className="feedWrapper">
-        {username === user.username && <Share />}
-        <div>
-          {posts.map((post, index) => {
-            const timeAgo = formatDistanceToNow(new Date(post.createdAt), {
-              addSuffix: true,
-            });
+        {/* 🔹 Show Share component only on user’s own profile */}
+        {username === user?.username && <Share />}
 
-            return (
-              <Post
-                key={post._id + index + 1}
-                date={timeAgo}
-                comments={post.comments}
-                likes={post.likes}
-                content={post.desc}
-                img={PF + "images/person/" + post.img}
-                userId={post.userId}
-                postId={post._id}
-              />
-            );
-          })}
-        </div>
+        {/* 🔹 Loading & Error Messages */}
+        {loading && <p className="loading">Loading posts...</p>}
+        {error && <p className="error">{error}</p>}
+
+        {/* 🔹 Different messages for Home & Profile Pages */}
+        {!loading && posts.length === 0 && (
+          <p className="noPosts">
+            {username
+              ? "This user hasn't posted anything yet."
+              : "Follow more people to see posts!"}
+          </p>
+        )}
+
+        {/* 🔹 Display posts */}
+        {!loading && posts.map((post, index) => {
+          const timeAgo = formatDistanceToNow(new Date(post.createdAt), {
+            addSuffix: true,
+          });
+
+          return (
+            <Post
+              key={post._id + index}
+              date={timeAgo}
+              comments={post.comments}
+              likes={post.likes}
+              content={post.desc}
+              img={post.img ? PF + "images/person/" + post.img : null} // 🔹 Handle missing images
+              userId={post.userId}
+              postId={post._id}
+            />
+          );
+        })}
       </div>
     </div>
   );

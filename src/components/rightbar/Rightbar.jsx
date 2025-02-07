@@ -2,8 +2,7 @@ import "./rightbar.css";
 import ad from "../../assets/images/ad.jpg";
 import gift from "../../assets/images/gift.jpg";
 import axios from "axios";
-import { useContext, useState } from "react";
-import { useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useParams } from "react-router-dom";
 import { Add, Remove } from "@mui/icons-material";
@@ -22,10 +21,41 @@ import { Add, Remove } from "@mui/icons-material";
 function Rightbar() {
   const { user: currentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
-
   const { username } = useParams();
-
   const [followed, setFollowed] = useState(false);
+  const [friends, setFriends] = useState([]);
+  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        if (!username) return;
+        const res = await axios.get(`/api/users?username=${username}`);
+        setUser(res.data);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+    fetchUser();
+  }, [username]);
+
+  useEffect(() => {
+    if (user?.followings) {
+      const getFriends = async () => {
+        try {
+          const usersData = await Promise.all(
+            user.followings.map((followingId) =>
+              axios.get(`/api/users?userId=${followingId}`).then((res) => res.data)
+            )
+          );
+          setFriends(usersData);
+        } catch (error) {
+          console.error("Error fetching friends:", error);
+        }
+      };
+      getFriends();
+    }
+  }, [user]);
 
   useEffect(() => {
     if (user?._id && currentUser.followings) {
@@ -33,119 +63,48 @@ function Rightbar() {
     }
   }, [currentUser.followings, user]);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const res = await axios.get(`/api/users?username=${username}`);
-      setUser(res.data);
-    };
-    fetchUser();
-  }, [username]);
+  const handleFollow = async () => {
+    try {
+      if (followed) {
+        setFollowed(false);
+        await axios.put(`/api/users/${user._id}/unfollow`, {
+          userId: currentUser._id,
+        });
+      } else {
+        setFollowed(true);
+        await axios.put(`/api/users/${user._id}/follow`, {
+          userId: currentUser._id,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  /**
-   * A component that displays a list of online friends in the right sidebar.
-   * It fetches the list of friends from the API and displays them in a list.
-   * The list contains the profile picture, username, and an online indicator.
-   * The component also displays a birthday message and an ad.
-   */
+  // HomeRightBar displays the list of online friends and birthday info
+
   const HomeRightBar = () => {
-    const PF = import.meta.env.VITE_PUBLIC_FOLDER;
-
-    const [friends, setFriends] = useState([]);
-    useEffect(() => {
-      const getFriends = async () => {
-        if (!user?.followings) return;
-
-        try {
-          const friendList = await axios.get(`/api/users/friends/${user._id}`);
-          setFriends(friendList);
-        } catch (error) {
-          console.error("Error fetching followings:", error);
-        }
-      };
-
-      getFriends();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user.username]);
-
+   
+  
     return (
       <>
         <div className="birthdayContainer">
-          <img className="birthdayImg" src={gift} alt=""></img>
+          <img className="birthdayImg" src={gift} alt="" />
           <span className="birthdayText">
-            <b>Carly Mushkit</b> and <b>3 other friends</b> have a birthday
-            today.
+            <b>Carly Mushkit</b> and <b>3 other friends</b> have a birthday today.
           </span>
         </div>
         <img src={ad} alt="" className="rightbarAd" />
-
-        <h4 className="rightbarTitle">Online Friends</h4>
-        <ul className="rightbarFriendList">
-          {friends.map((user) => (
-            <li className="rightbarFriend" key={user._id}>
-              <div className="rightbarProfileImgContainer">
-                <img
-                  className="rightbarProfileImg"
-                  src={
-                    user.profilePicture
-                      ? PF + "images/person/" + user.profilePicture
-                      : PF + "images/person/" + "defaultProfile.jpg"
-                  }
-                  alt=""
-                />
-                <span className="rightbarOnline"></span>
-              </div>
-              <span className="rightbarUsername">{user.username}</span>
-            </li>
-          ))}
-        </ul>
+  
+        <h4 className="rightbarTitle">Trending Posts</h4>
+        <div>No posts are trending</div>
       </>
     );
   };
+  
 
+  // ProfileRightBar displays detailed user info and follow/unfollow button
   const ProfileRightBar = () => {
-    const PF = import.meta.env.VITE_PUBLIC_FOLDER;
-
-    const [friends, setFriends] = useState([]);
-    useEffect(() => {
-      const getFriends = async () => {
-        if (!user?.followings) return;
-
-        try {
-          const usersData = await Promise.all(
-            user.followings.map((followingId) =>
-              axios
-                .get(`/api/users?userId=${followingId}`)
-                .then((res) => res.data)
-            )
-          );
-          setFriends(usersData);
-        } catch (error) {
-          console.error("Error fetching followings:", error);
-        }
-      };
-
-      getFriends();
-    }, []);
-
-    const handleFollow = async () => {
-      try {
-        if (followed) {
-          setFollowed(false);
-
-          await axios.put(`/api/users/${user._id}/unfollow`, {
-            userId: currentUser._id,
-          });
-        } else {
-          setFollowed(true);
-          await axios.put(`/api/users/${user._id}/follow`, {
-            userId: currentUser._id,
-          });
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     return (
       <>
         {user.username !== currentUser.username && (
@@ -154,7 +113,6 @@ function Rightbar() {
             {followed ? <Remove /> : <Add />}
           </button>
         )}
-
         <h4 className="rightbarTitle">User information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
@@ -196,7 +154,7 @@ function Rightbar() {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {user ? <ProfileRightBar /> : <HomeRightBar />}
+        {username ? <ProfileRightBar /> : <HomeRightBar />}
       </div>
     </div>
   );
