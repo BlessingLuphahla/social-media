@@ -130,16 +130,17 @@ function Rightbar() {
     const handleFollow = async () => {
       try {
         if (followed) {
+          setFollowed(false);
+
           await axios.put(`/api/users/${user._id}/unfollow`, {
             userId: currentUser._id,
           });
         } else {
+          setFollowed(true);
           await axios.put(`/api/users/${user._id}/follow`, {
             userId: currentUser._id,
           });
         }
-
-        setFollowed(!followed);
       } catch (err) {
         console.log(err);
       }
