@@ -50,7 +50,7 @@ function Feed({ username }) {
     <div className="feed">
       <div className="feedWrapper">
         {/* 🔹 Show Share component only on user’s own profile */}
-        {username === user?.username && <Share />}
+        {(!username || username === user?.username ) && <Share />}
 
         {/* 🔹 Loading & Error Messages */}
         {loading && <p className="loading">Loading posts...</p>}
