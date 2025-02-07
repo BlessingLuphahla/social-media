@@ -19,13 +19,10 @@ function Share() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("handle submit");
-
     if (!desc.current.value.trim() && !file) {
       console.log("Post content cannot be empty!");
       return;
     }
-
 
     const newPost = {
       userId: user._id,
@@ -40,7 +37,8 @@ function Share() {
       newPost.img = fileName; // Save filename to newPost
 
       try {
-        await axios.post("/api/upload", data); // Upload file first
+        const res = await axios.post("/api/upload", data); // Upload file first
+        newPost.img = res.data.fileName; // Use the filename from the response
       } catch (err) {
         console.log("File upload failed:", err);
         return;
@@ -49,10 +47,11 @@ function Share() {
 
     try {
       await axios.post("/api/posts", newPost);
-      console.log("Post shared successfully!");
+      window.location.reload();
     } catch (err) {
       console.log("Error creating post:", err);
     }
+
   };
 
   return (
