@@ -47,7 +47,7 @@ function Share() {
       newPost.img = fileName;
 
       try {
-        const res = await axios.post("/api/upload", data);
+        const res = await axios.post("https://social-media-rest-api-xpqj.onrender.com/api/upload", data);
         newPost.img = res.data.fileName;
       } catch (err) {
         console.log("File upload failed:", err);
@@ -56,7 +56,7 @@ function Share() {
     }
 
     try {
-      await axios.post("/api/posts", newPost);
+      await axios.post("https://social-media-rest-api-xpqj.onrender.com/api/posts", newPost);
       window.location.reload();
     } catch (err) {
       console.log("Error creating post:", err);
