@@ -5,37 +5,30 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function Rightbar() {
-
   const user = useContext(AuthContext).user;
 
   const HomeRightBar = () => {
-
     const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
-    const [followingUsers, setFollowingUsers] = useState([]);
+    const [friends, setFriends] = useState([]);
     useEffect(() => {
-      const fetchFollowings = async () => {
+      const getFriends = async () => {
         if (!user?.followings) return;
 
         try {
-          const usersData = await Promise.all(
-            user.followings.map((followingId) =>
-              axios
-                .get(`/api/users?userId=${followingId}`)
-                .then((res) => res.data)
-            )
-          );
-          setFollowingUsers(usersData);
+          const friendList = await axios.get(`/api/users/friends/${user._id}`);
+          setFriends(friendList);
         } catch (error) {
           console.error("Error fetching followings:", error);
         }
       };
 
-      fetchFollowings();
-    }, []);
-
+      getFriends();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user.username]);
 
     return (
       <>
@@ -50,7 +43,7 @@ function Rightbar() {
 
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
-          {followingUsers.map((user) => (
+          {friends.map((user) => (
             <li className="rightbarFriend" key={user._id}>
               <div className="rightbarProfileImgContainer">
                 <img className="rightbarProfileImg" 
@@ -63,7 +56,6 @@ function Rightbar() {
               <span className="rightbarUsername">{user.username}</span>
             </li>
           ))}
-    
         </ul>
       </>
     );
@@ -72,9 +64,9 @@ function Rightbar() {
   const ProfileRightBar = () => {
     const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
-    const [followingUsers, setFollowingUsers] = useState([]);
+    const [friends, setFriends] = useState([]);
     useEffect(() => {
-      const fetchFollowings = async () => {
+      const getFriends = async () => {
         if (!user?.followings) return;
 
         try {
@@ -85,13 +77,13 @@ function Rightbar() {
                 .then((res) => res.data)
             )
           );
-          setFollowingUsers(usersData);
+          setFriends(usersData);
         } catch (error) {
           console.error("Error fetching followings:", error);
         }
       };
 
-      fetchFollowings();
+      getFriends();
     }, []);
 
     return (
@@ -113,18 +105,19 @@ function Rightbar() {
         </div>
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
-
-          {followingUsers.map((user) => (
+          {friends.map((user) => (
             <div key={user._id} className="rightbarFollowing">
+              <Link to={`/profile/${user.username}`}>
               <img
                 src={
                   user.profilePic
-                    ? PF + "images/person/" + user.profilePic
-                    : PF + "images/person/defaultProfile.jpg"
+                  ? PF + "images/person/" + user.profilePic
+                  : PF + "images/person/defaultProfile.jpg"
                 }
                 alt=""
                 className="rightbarFollowingImg"
-              />
+                />
+                </Link>
               <span className="rightbarFollowingName">{user.username}</span>
             </div>
           ))}

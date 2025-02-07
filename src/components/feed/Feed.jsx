@@ -7,20 +7,21 @@ import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import { AuthContext } from "../../context/AuthContext";
 
-function Feed({username}) {
+function Feed({ username }) {
   const [posts, setPosts] = useState([]);
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
   const user = useContext(AuthContext).user;
 
-
   useEffect(() => {
     const fetchPosts = async () => {
       const res = username
         ? await axios.get(`/api/posts/profile/${username}/`)
         : await axios.get("/api/posts/timeline/" + user._id);
-      setPosts(res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+      setPosts(
+        res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      );
     };
     fetchPosts();
   }, [user._id, username]);
@@ -28,7 +29,7 @@ function Feed({username}) {
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Share />
+        {username === user.username && <Share />}
         <div>
           {posts.map((post, index) => {
             const timeAgo = formatDistanceToNow(new Date(post.createdAt), {

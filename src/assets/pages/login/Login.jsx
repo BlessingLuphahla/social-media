@@ -29,7 +29,7 @@ function Login() {
           </span>
           <span>
             (Please note that i am using a render free tier to run this app so
-            the first request might be slow)
+            the first request might be slow)``
           </span>
         </div>
         <div className="loginRight">
