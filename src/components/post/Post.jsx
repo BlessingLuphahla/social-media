@@ -9,6 +9,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { IconButton, Menu, MenuItem } from "@mui/material";
 
 function Post(post) {
   const [likes, setLike] = useState(post.likes.length);
@@ -47,6 +48,17 @@ function Post(post) {
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -68,7 +80,15 @@ function Post(post) {
             <span className="postDate">{post.date}</span>
           </div>
           <div className="postTopRight">
-            <MoreVert />
+            {/* More options button */}
+            <IconButton onClick={handleMenuOpen}>
+              <MoreVert />
+            </IconButton>
+
+            {/* Dropdown menu */}
+            <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
+              <MenuItem>Delete Post (doesnt work yet)</MenuItem>
+            </Menu>
           </div>
         </div>
         <div className="postCenter">
