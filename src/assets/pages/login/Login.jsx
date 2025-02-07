@@ -14,9 +14,7 @@ function Login() {
     e.preventDefault();
 
     LoginCall(
-      { email: email.current.value,
-        password: password.current.value,
-      },
+      { email: email.current.value, password: password.current.value },
       dispatch
     );
   }
@@ -28,6 +26,10 @@ function Login() {
           <h3 className="loginLogo">Redd Media</h3>
           <span className="loginDesc">
             Connect with friends and the world around you on Redd Media.
+          </span>
+          <span>
+            (Please note that i am using a render free tier to run this app so
+            the first request might be slow)
           </span>
         </div>
         <div className="loginRight">
