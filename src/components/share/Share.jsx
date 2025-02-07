@@ -34,11 +34,11 @@ function Share() {
       const fileName = Date.now() + file.name;
       data.append("file", file);
       data.append("name", fileName);
-      newPost.img = fileName; // Save filename to newPost
+      newPost.img = fileName;
 
       try {
-        const res = await axios.post("/api/upload", data); // Upload file first
-        newPost.img = res.data.fileName; // Use the filename from the response
+        const res = await axios.post("/api/upload", data);
+        newPost.img = res.data.fileName;
       } catch (err) {
         console.log("File upload failed:", err);
         return;
