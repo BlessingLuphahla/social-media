@@ -10,5 +10,3 @@ export default defineConfig({
     },
   },
 });
-// "/api": "https://localhost:4000/",
-// "/api": "",

@@ -8,6 +8,17 @@ import { AuthContext } from "../../context/AuthContext";
 import { Link, useParams } from "react-router-dom";
 import { Add, Remove } from "@mui/icons-material";
 
+/**
+ * Rightbar component is responsible for displaying additional user-related information
+ * and interactions on the right side of the page. It includes two main subcomponents:
+ * HomeRightBar and ProfileRightBar. The component fetches user data based on the
+ * username from the URL parameters and determines if the current user is following
+ * the profile being viewed. HomeRightBar displays a list of online friends and
+ * additional information like birthdays and ads. ProfileRightBar provides detailed
+ * information about the profile being viewed, including user information and friends,
+ * and allows the current user to follow or unfollow the profile.
+ */
+
 function Rightbar() {
   const { user: currentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
@@ -17,8 +28,10 @@ function Rightbar() {
   const [followed, setFollowed] = useState(false);
 
   useEffect(() => {
-    setFollowed(currentUser.followings.includes(user?._id));
-  }, [currentUser.followings, user?._id]);
+    if (user?._id && currentUser.followings) {
+      setFollowed(currentUser.followings.includes(user._id));
+    }
+  }, [currentUser.followings, user]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,6 +41,12 @@ function Rightbar() {
     fetchUser();
   }, [username]);
 
+  /**
+   * A component that displays a list of online friends in the right sidebar.
+   * It fetches the list of friends from the API and displays them in a list.
+   * The list contains the profile picture, username, and an online indicator.
+   * The component also displays a birthday message and an ad.
+   */
   const HomeRightBar = () => {
     const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
@@ -114,13 +133,13 @@ function Rightbar() {
           await axios.put(`/api/users/${user._id}/unfollow`, {
             userId: currentUser._id,
           });
-          setFollowed(false);
         } else {
           await axios.put(`/api/users/${user._id}/follow`, {
             userId: currentUser._id,
           });
-          setFollowed(true);
         }
+
+        setFollowed(!followed);
       } catch (err) {
         console.log(err);
       }
