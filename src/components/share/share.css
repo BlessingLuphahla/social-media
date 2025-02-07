@@ -94,15 +94,15 @@
   
   .shareImg {
     width: 100%;
-    max-height: 300px; /* Prevents overly tall images */
-    border-radius: 8px; /* Adds smooth corners */
+    max-height: 300px;
+    border-radius: 8px;
     object-fit: cover;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    transition: transform 0.2s ease-in-out; /* Smooth zoom effect */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
   }
   
   .shareImg:hover {
-    transform: scale(1.02); /* Slight zoom effect on hover */
+    transform: scale(1.02); 
   }
   
   .shareCancel {
