@@ -15,7 +15,6 @@ function Profile() {
 
   useEffect(() => {
     const fetchUser = async () => {
-
       const res = await axios.get("/api/users?username=" + username);
       setUser(res.data);
     };
@@ -58,7 +57,7 @@ function Profile() {
 
           <div className="profileRightBottom">
             <Feed username={user.username} />
-            <Rightbar user={user} />
+            <Rightbar />
           </div>
         </div>
       </div>

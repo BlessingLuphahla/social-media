@@ -5,10 +5,28 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Add, Remove } from "@mui/icons-material";
 
 function Rightbar() {
-  const user = useContext(AuthContext).user;
+  const { user: currentUser } = useContext(AuthContext);
+  const [user, setUser] = useState({});
+
+  const { username } = useParams();
+
+  const [followed, setFollowed] = useState(false);
+
+  useEffect(() => {
+    setFollowed(currentUser.followings.includes(user?._id));
+  }, [currentUser.followings, user?._id]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/api/users?username=${username}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [username]);
 
   const HomeRightBar = () => {
     const PF = import.meta.env.VITE_PUBLIC_FOLDER;
@@ -46,11 +64,15 @@ function Rightbar() {
           {friends.map((user) => (
             <li className="rightbarFriend" key={user._id}>
               <div className="rightbarProfileImgContainer">
-                <img className="rightbarProfileImg" 
-                src={user.profilePicture?
-                  PF + "images/person/" + user.profilePicture
-                  : PF +"images/person/" + "defaultProfile.jpg"
-                  } alt="" />
+                <img
+                  className="rightbarProfileImg"
+                  src={
+                    user.profilePicture
+                      ? PF + "images/person/" + user.profilePicture
+                      : PF + "images/person/" + "defaultProfile.jpg"
+                  }
+                  alt=""
+                />
                 <span className="rightbarOnline"></span>
               </div>
               <span className="rightbarUsername">{user.username}</span>
@@ -86,8 +108,33 @@ function Rightbar() {
       getFriends();
     }, []);
 
+    const handleFollow = async () => {
+      try {
+        if (followed) {
+          await axios.put(`/api/users/${user._id}/unfollow`, {
+            userId: currentUser._id,
+          });
+          setFollowed(false);
+        } else {
+          await axios.put(`/api/users/${user._id}/follow`, {
+            userId: currentUser._id,
+          });
+          setFollowed(true);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     return (
       <>
+        {user.username !== currentUser.username && (
+          <button className="rightbarFollowButton" onClick={handleFollow}>
+            {followed ? "Unfollow" : "Follow"}
+            {followed ? <Remove /> : <Add />}
+          </button>
+        )}
+
         <h4 className="rightbarTitle">User information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
@@ -108,16 +155,16 @@ function Rightbar() {
           {friends.map((user) => (
             <div key={user._id} className="rightbarFollowing">
               <Link to={`/profile/${user.username}`}>
-              <img
-                src={
-                  user.profilePic
-                  ? PF + "images/person/" + user.profilePic
-                  : PF + "images/person/defaultProfile.jpg"
-                }
-                alt=""
-                className="rightbarFollowingImg"
+                <img
+                  src={
+                    user.profilePic
+                      ? PF + "images/person/" + user.profilePic
+                      : PF + "images/person/defaultProfile.jpg"
+                  }
+                  alt=""
+                  className="rightbarFollowingImg"
                 />
-                </Link>
+              </Link>
               <span className="rightbarFollowingName">{user.username}</span>
             </div>
           ))}
