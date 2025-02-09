@@ -25,9 +25,9 @@ function Feed({ username }) {
         let res;
 
         if (username) {
-          res = await axios.get(`https://social-media-rest-api-xpqj.onrender.com/api/posts/profile/${username}/`);
+          res = await axios.get(import.meta.env.VITE_SERVER_URL+`/api/posts/profile/${username}/`);
         } else {
-          res = await axios.get(`https://social-media-rest-api-xpqj.onrender.com/api/posts/timeline/${user._id}`);
+          res = await axios.get(import.meta.env.VITE_SERVER_URL+`/api/posts/timeline/${user._id}`);
         }
 
         if (res?.data) {

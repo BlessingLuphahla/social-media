@@ -30,7 +30,7 @@ function Rightbar() {
     const fetchUser = async () => {
       try {
         if (!username) return;
-        const res = await axios.get(`https://social-media-rest-api-xpqj.onrender.com/api/users?username=${username}`);
+        const res = await axios.get(import.meta.env.VITE_SERVER_URL+`/api/users?username=${username}`);
         setUser(res.data);
       } catch (error) {
         console.error("Error fetching user:", error);
@@ -45,7 +45,7 @@ function Rightbar() {
         try {
           const usersData = await Promise.all(
             user.followings.map((followingId) =>
-              axios.get(`https://social-media-rest-api-xpqj.onrender.com/api/users?userId=${followingId}`).then((res) => res.data)
+              axios.get(import.meta.env.VITE_SERVER_URL+`/api/users?userId=${followingId}`).then((res) => res.data)
             )
           );
           setFriends(usersData);
@@ -67,12 +67,12 @@ function Rightbar() {
     try {
       if (followed) {
         setFollowed(false);
-        await axios.put(`https://social-media-rest-api-xpqj.onrender.com/api/users/${user._id}/unfollow`, {
+        await axios.put(import.meta.env.VITE_SERVER_URL+`/api/users/${user._id}/unfollow`, {
           userId: currentUser._id,
         });
       } else {
         setFollowed(true);
-        await axios.put(`https://social-media-rest-api-xpqj.onrender.com/api/users/${user._id}/follow`, {
+        await axios.put(import.meta.env.VITE_SERVER_URL+`/api/users/${user._id}/follow`, {
           userId: currentUser._id,
         });
       }
