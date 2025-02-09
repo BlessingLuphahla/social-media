@@ -5,7 +5,7 @@ export const LoginCall = async (userCredentials, dispatch) => {
   dispatch(LoginStart(userCredentials));
   try {
     const res = await axios.post(
-      "https://social-media-rest-api-xpqj.onrender.com/api/auth/login",
+      import.meta.env.VITE_SERVER_URL+"/api/auth/login",
       userCredentials
     );
     dispatch(LoginSuccess(res.data));

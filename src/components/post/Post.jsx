@@ -23,7 +23,7 @@ function Post(post) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("https://social-media-rest-api-xpqj.onrender.com/api/users?userId=" + post.userId);
+      const res = await axios.get(import.meta.env.VITE_SERVER_URL+"/api/users?userId=" + post.userId);
       setUser(res.data);
     };
     fetchUser();
@@ -31,10 +31,10 @@ function Post(post) {
 
   const likeHandler = async () => {
     try {
-      await axios.put("https://social-media-rest-api-xpqj.onrender.com/api/posts/" + post.postId + "/like", {
+      await axios.put(import.meta.env.VITE_SERVER_URL+"/api/posts/" + post.postId + "/like", {
         userId: currentUser._id,
       });
-      await axios.put("https://social-media-rest-api-xpqj.onrender.com/api/users/" + currentUser._id, {
+      await axios.put(import.meta.env.VITE_SERVER_URL+"/api/users/" + currentUser._id, {
         userId: currentUser._id,
         likes: [...currentUser.likes, post.postId], // Create a new array instead of mutating
       });
