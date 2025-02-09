@@ -1,0 +1,47 @@
+.messenger {
+  height: calc(100vh - 70px);
+  display: flex;
+}
+
+.chatMenu {
+  flex: 3.3;
+  background-color: green;
+}
+
+.chatBox {
+  flex: 5.5;
+  background-color: red;
+}
+
+.chatOnline {
+  flex: 3;
+  background-color: blue;
+}
+
+.chatOnlineWrapper,
+.chatMenuWrapper,
+.chatBoxWrapper {
+  padding-top: 10px;
+  height: 100%;
+  overflow: scroll;
+}
+
+.chatBoxWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: scroll;
+}
+
+.chatMenuWrapper {
+  padding-top: 10px;
+  height: 100%;
+  overflow: scroll;
+}
+
+.chatOnlineWrapper {
+  padding-top: 10px;
+  height: 100%;
+  overflow: scroll;
+}
