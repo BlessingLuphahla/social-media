@@ -5,17 +5,14 @@
 
 .chatMenu {
   flex: 3.3;
-  background-color: green;
 }
 
 .chatBox {
   flex: 5.5;
-  background-color: red;
 }
 
 .chatOnline {
   flex: 3;
-  background-color: blue;
 }
 
 .chatOnlineWrapper,
@@ -23,25 +20,13 @@
 .chatBoxWrapper {
   padding-top: 10px;
   height: 100%;
-  overflow: scroll;
+  background-color: aqua;
+
 }
 
-.chatBoxWrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: scroll;
-}
-
-.chatMenuWrapper {
-  padding-top: 10px;
-  height: 100%;
-  overflow: scroll;
-}
-
-.chatOnlineWrapper {
-  padding-top: 10px;
-  height: 100%;
-  overflow: scroll;
+.chatMenuInput {
+  width: 90%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid gray;
 }

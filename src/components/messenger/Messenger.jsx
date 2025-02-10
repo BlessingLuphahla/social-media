@@ -8,7 +8,8 @@ function Messenger() {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            menu
+            <input type="text" placeholder="Search for friends" className="chatMenuInput" />
+            
           </div>
         </div>
         <div className="chatBox">
