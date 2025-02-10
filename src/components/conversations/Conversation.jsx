@@ -31,7 +31,7 @@ function Conversation({ conversation }) {
     <div className="conversation">
       <img
         src={
-          friend.profilePic
+          friend?.profilePic
             ? PF + "images/person/" + friend?.profilePic
             : PF + "images/person/defaultProfile.jpg"
         }

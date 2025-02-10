@@ -51,7 +51,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-} 
+}
 
 .chatBoxBottom form {
   width: 100%;
@@ -85,7 +85,6 @@
 
 .chatBoxBottom button:hover {
   background-color: #2e4fff;
-  
 }
 
 .chatBoxBottom button:active {
@@ -104,10 +103,18 @@
   font-size: 16px;
 }
 
-
-.chatBoxWrapper {  
-  display: flex;  
+.chatBoxWrapper {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
+.noConversationText {
+  position: absolute;
+  top: 20%;
+  text-align: center;
+  font-size: 40px;
+  color: rgb(224, 220, 220);
+  cursor: default;
+}
