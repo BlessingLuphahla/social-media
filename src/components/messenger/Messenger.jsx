@@ -27,6 +27,22 @@ function Messenger() {
     fetchConversations();
   }, [user._id]);
 
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await axios.get("/api/messages/" + currentChat?._id);
+        setMessages(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchMessages();
+  }, [currentChat?._id]);
+
+  console.log(user.profilePic);
+  
+
   return (
     <>
       <Topbar />
@@ -39,7 +55,10 @@ function Messenger() {
               className="chatMenuInput"
             />
             {conversations?.map((convo, index) => (
-              <div onClick={() => setCurrentChat(convo)} key={convo._id + index}>
+              <div
+                onClick={() => setCurrentChat(convo)}
+                key={convo._id + index}
+              >
                 <Conversation conversation={convo} />
               </div>
             ))}
@@ -50,9 +69,15 @@ function Messenger() {
             {currentChat ? (
               <>
                 <div className="chatBoxTop">
-                  <Message own={true} />s
+                  {messages?.map((message, index) => (
+                    <Message
+                      key={message._id + index}
+                      own={user._id == currentChat.sender}
+                      message={message}
+                      messageImg={user.profilePic}
+                    />
+                  ))}
                   <Message />
-                  <Message own={true} />
                 </div>
 
                 <div className="chatBoxBottom">

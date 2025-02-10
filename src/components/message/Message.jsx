@@ -1,22 +1,27 @@
+/* eslint-disable react/prop-types */
 import "./message.css";
+import { formatDistanceToNow } from "date-fns";
 
-// eslint-disable-next-line react/prop-types
-function Message({ own }) {
+function Message({ own, message, messageImg }) {
+  const getTime = () => {
+    if (!message) return;
+    const time = formatDistanceToNow(new Date(message.createdAt), {
+      addSuffix: true,
+    });
+
+    return time;
+  };
+
+  const timeAgo = getTime();
+
   return (
     <div className={own ? "message own" : "message"}>
       <div className="messageWrapper">
         <div className="messageTop">
-          <img
-            className="messageImg"
-            src="https://images.pexels.com/photos/15747834/pexels-photo-15747834/free-photo-of-statue-of-greyfriars-bobby.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt=""
-          />
-          <p className="messageText">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut ex
-            eaque laudantium vel quidem, ?
-          </p>
+          <img className="messageImg" src={messageImg} alt="" />
+          <p className="messageText">{message?.text}</p>
         </div>
-        <div className="messageBottom">1 hour ago</div>
+        <div className="messageBottom">{timeAgo}</div>
       </div>
     </div>
   );
