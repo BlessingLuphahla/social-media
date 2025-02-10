@@ -2,6 +2,7 @@ import "./messenger.css";
 import Topbar from "../topbar/TopBar";
 import Conversation from "../conversations/Conversation";
 import Message from "../message/Message";
+import ChatOnline from "../chatOnline/ChatOnline";
 
 function Messenger() {
   return (
@@ -72,7 +73,13 @@ function Messenger() {
           </div>
         </div>
         <div className="chatOnline">
-          <div className="chatOnlineWrapper">online</div>
+          <div className="chatOnlineWrapper">
+            <ChatOnline />
+            <ChatOnline />
+            <ChatOnline />
+            <ChatOnline />
+            <ChatOnline />
+          </div>
         </div>
       </div>
     </>
