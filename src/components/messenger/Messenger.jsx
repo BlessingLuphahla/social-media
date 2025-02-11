@@ -73,13 +73,16 @@ function Messenger() {
     } catch (err) {
       console.log(err);
     }
+
+    setNewMessage("");
   };
 
   useEffect(() => {
-    scrollRef?.current.scrollIntoView();
+    if (!scrollRef) return;
+    scrollRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
   }, [messages]);
-
-  console.log(scrollRef?.current);
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
