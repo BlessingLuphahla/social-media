@@ -30,12 +30,12 @@ function Conversation({ conversation }) {
   return (
     <div className="conversation">
       <img
+        className="conversationImg"
         src={
           friend?.profilePic
             ? PF + "images/person/" + friend?.profilePic
             : PF + "images/person/defaultProfile.jpg"
         }
-        className="conversationImg"
       />
       <span className="conversationName">{friend?.username}</span>
     </div>

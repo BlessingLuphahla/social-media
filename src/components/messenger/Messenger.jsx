@@ -11,23 +11,34 @@ function Messenger() {
   const { user } = useContext(AuthContext);
 
   const [conversations, setConversations] = useState(null);
-  const [currentChat, setCurrentChat] = useState(null);
-  const [messages, setMessages] = useState(null);
+  const [currentChat, setCurrentChat] = useState([]);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchConversations = async () => {
       try {
-        const res = await axios.get("/api/conversations/" + user._id);
+        const res = await axios.get("/api/conversations/" + user._id, {
+          signal: controller.signal,
+        });
         setConversations(res.data);
       } catch (err) {
+        if (err.name === "AbortError") console.log("Request Was Cancelled");
+        else console.log(err);
+
         console.log(err);
       }
     };
 
     fetchConversations();
+
+    return () => {
+      controller.abort();
+    };
   }, [user._id]);
 
   useEffect(() => {
+    if (!currentChat) return;
     const fetchMessages = async () => {
       try {
         const res = await axios.get("/api/messages/" + currentChat?._id);
@@ -38,10 +49,11 @@ function Messenger() {
     };
 
     fetchMessages();
-  }, [currentChat?._id]);
+  }, [currentChat]);
 
   console.log(user.profilePic);
-  
+
+  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
   return (
     <>
@@ -72,12 +84,15 @@ function Messenger() {
                   {messages?.map((message, index) => (
                     <Message
                       key={message._id + index}
-                      own={user._id == currentChat.sender}
+                      own={user._id == message.sender}
                       message={message}
-                      messageImg={user.profilePic}
+                      messageImg={
+                        user.profilePic
+                          ? PF + "images/person/" + user?.profilePic
+                          : PF + "images/person/defaultProfile.jpg"
+                      }
                     />
                   ))}
-                  <Message />
                 </div>
 
                 <div className="chatBoxBottom">
