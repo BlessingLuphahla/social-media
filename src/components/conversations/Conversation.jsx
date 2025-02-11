@@ -11,7 +11,7 @@ function Conversation({ conversation }) {
 
   useEffect(() => {
     const friendId = conversation?.members.find((id) => id !== user._id);
-    const controller = AbortController();
+    const controller = new AbortController();
 
     const fetchFriend = async () => {
       if (!friendId) return;
@@ -21,7 +21,7 @@ function Conversation({ conversation }) {
         });
         setFriend(res?.data);
       } catch (err) {
-        if (err.name == "AbortError") console.log("Request has been Cancelled");
+        if (err.name == "CanceledError") console.log("Request has been Cancelled");
         else console.log(err);
       }
     };

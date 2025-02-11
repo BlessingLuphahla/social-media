@@ -21,7 +21,7 @@ function Message({ own, message, messageImg }) {
           <img className="messageImg" src={messageImg} alt="" />
           <p className="messageText">{message?.text}</p>
         </div>
-        <div className="messageBottom">{timeAgo}</div>
+        <div className="messageBottom">{timeAgo.replace("about ", "")}</div>
       </div>
     </div>
   );

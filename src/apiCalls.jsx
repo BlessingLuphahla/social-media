@@ -16,7 +16,7 @@ export const LoginCall = async (userCredentials, dispatch) => {
     );
     dispatch(LoginSuccess(res.data));
   } catch (err) {
-    if (err.name === "AbortError") console.log("Request has been cancelled");
+    if (err.name === "CanceledError") console.log("Request has been cancelled");
     else console.log(err);
     dispatch(LoginFailure(err));
   }

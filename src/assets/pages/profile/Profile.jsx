@@ -27,7 +27,7 @@ function Profile() {
 
         setUser(res.data);
       } catch (err) {
-        if (err.name === "AbortError") console.log("Request was cancelled");
+        if (err.name === "CanceledError") console.log("Request was cancelled");
         else console.log(err);
       }
     };

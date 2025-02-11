@@ -3,7 +3,7 @@ import Topbar from "../topbar/TopBar";
 import Conversation from "../conversations/Conversation";
 import Message from "../message/Message";
 import ChatOnline from "../chatOnline/ChatOnline";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -11,8 +11,11 @@ function Messenger() {
   const { user } = useContext(AuthContext);
 
   const [conversations, setConversations] = useState(null);
-  const [currentChat, setCurrentChat] = useState([]);
+  const [currentChat, setCurrentChat] = useState({});
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+
+  const scrollRef = useRef();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -23,7 +26,7 @@ function Messenger() {
         });
         setConversations(res.data);
       } catch (err) {
-        if (err.name === "AbortError") console.log("Request Was Cancelled");
+        if (err.name === "CanceledError") console.log("Request Was Cancelled");
         else console.log(err);
 
         console.log(err);
@@ -51,7 +54,32 @@ function Messenger() {
     fetchMessages();
   }, [currentChat]);
 
-  console.log(user.profilePic);
+  const handleNewMessage = async (e) => {
+    e.preventDefault();
+
+    if (!newMessage) return;
+    if (!currentChat._id) return;
+    if (!user._id) return;
+
+    const message = {
+      conversationId: currentChat._id,
+      sender: user._id,
+      text: newMessage,
+    };
+
+    try {
+      const res = await axios.post("/api/messages/", message);
+      setMessages([...messages, res.data]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    scrollRef?.current.scrollIntoView();
+  }, [messages]);
+
+  console.log(scrollRef?.current);
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
@@ -78,20 +106,21 @@ function Messenger() {
         </div>
         <div className="chatBox">
           <div className="chatBoxWrapper">
-            {currentChat ? (
+            {currentChat._id ? (
               <>
                 <div className="chatBoxTop">
                   {messages?.map((message, index) => (
-                    <Message
-                      key={message._id + index}
-                      own={user._id == message.sender}
-                      message={message}
-                      messageImg={
-                        user.profilePic
-                          ? PF + "images/person/" + user?.profilePic
-                          : PF + "images/person/defaultProfile.jpg"
-                      }
-                    />
+                    <div ref={scrollRef} key={message._id + index}>
+                      <Message
+                        own={user._id == message.sender}
+                        message={message}
+                        messageImg={
+                          user.profilePic
+                            ? PF + "images/person/" + user?.profilePic
+                            : PF + "images/person/defaultProfile.jpg"
+                        }
+                      />
+                    </div>
                   ))}
                 </div>
 
@@ -99,8 +128,15 @@ function Messenger() {
                   <textarea
                     className="chatMessageInput"
                     placeholder="write something..."
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
                   ></textarea>
-                  <button className="chatSubmitButton">Send</button>
+                  <button
+                    onClick={handleNewMessage}
+                    className="chatSubmitButton"
+                  >
+                    Send
+                  </button>
                 </div>
               </>
             ) : (
