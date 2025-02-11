@@ -24,6 +24,7 @@ function Feed({ username }) {
         setError(null);
         let res;
 
+
         if (username) {
           res = await axios.get(import.meta.env.VITE_SERVER_URL+`/api/posts/profile/${username}/`);
         } else {

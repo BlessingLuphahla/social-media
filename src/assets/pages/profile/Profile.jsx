@@ -14,11 +14,30 @@ function Profile() {
   const username = useParams().username;
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchUser = async () => {
-      const res = await axios.get(import.meta.env.VITE_SERVER_URL+"/api/users?username=" + username);
-      setUser(res.data);
+      try {
+        const res = await axios.get(
+          import.meta.env.VITE_SERVER_URL + "/api/users?username=" + username,
+          {
+            signal: controller.signal,
+          }
+        );
+
+        setUser(res.data);
+      } catch (err) {
+        if (err.name === "AbortError") console.log("Request was cancelled");
+        else console.log(err);
+      }
     };
     fetchUser();
+
+    return () => {
+      controller.abort();
+    };
+
+
   }, [username]);
 
   return (

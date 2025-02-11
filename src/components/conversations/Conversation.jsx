@@ -11,18 +11,25 @@ function Conversation({ conversation }) {
 
   useEffect(() => {
     const friendId = conversation?.members.find((id) => id !== user._id);
+    const controller = AbortController();
 
     const fetchFriend = async () => {
       if (!friendId) return;
       try {
-        const res = await axios.get("/api/users?userId=" + friendId);
+        const res = await axios.get("/api/users?userId=" + friendId, {
+          signal: controller.signal,
+        });
         setFriend(res?.data);
       } catch (err) {
-        console.log(err);
+        if (err.name == "AbortError") console.log("Request has been Cancelled");
+        else console.log(err);
       }
     };
-
     fetchFriend();
+
+    return () => {
+      controller.abort();
+    };
   }, [conversation?.members, user._id]);
 
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
