@@ -15,12 +15,19 @@ function Messenger() {
   const [currentChat, setCurrentChat] = useState({});
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [arrivalMessage, setArrivalMessage] = useState(null);
   const socket = useRef();
 
   const scrollRef = useRef();
 
   useEffect(() => {
     socket.current = io("ws://localhost:4000");
+    socket.current.on("getMessage", (message) => {
+      setArrivalMessage({
+        sender: message.senderId,
+        text: message.text,
+      });
+    });
   }, []);
 
   useEffect(() => {
@@ -30,14 +37,6 @@ function Messenger() {
       console.log(users);
     });
   }, [user?._id]);
-
-  const sendMessage = (senderId, receiverId, text) => {
-    socket.current.emit("sendMessage", { senderId, receiverId, text });
-  };
-
-  useEffect(() => {
-    socket.current.on("getMessage");
-  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -91,7 +90,11 @@ function Messenger() {
       (member) => member !== user._id
     );
 
-    sendMessage(message.sender, receiverId, message.text);
+    socket.current.emit("sendMessage", {
+      senderId: message.sender,
+      receiverId: receiverId,
+      text: message.text,
+    });
 
     try {
       const res = await axios.post("/api/messages/", message);
