@@ -21,22 +21,37 @@ function Messenger() {
   const scrollRef = useRef();
 
   useEffect(() => {
+    if (!user?._id) return;
     socket.current = io("ws://localhost:4000");
-    socket.current.on("getMessage", (message) => {
-      setArrivalMessage({
-        sender: message.senderId,
-        text: message.text,
-      });
-    });
-  }, []);
 
-  useEffect(() => {
-    socket.current.emit("sendUser", user?._id);
+    socket.current.emit("sendUser", user._id);
 
     socket.current.on("getUsers", (users) => {
       console.log(users);
     });
+
+    socket.current.on("getMessage", (message) => {
+      setArrivalMessage({
+        sender: message.senderId,
+        text: message.text,
+        createdAt: Date.now(),
+      });
+    });
+
+    return () => {
+      socket.current.off("getMessage");
+      socket.current.disconnect();
+    };
   }, [user?._id]);
+
+  useEffect(() => {
+    if (
+      arrivalMessage &&
+      currentChat?.members?.includes(arrivalMessage.sender)
+    ) {
+      setMessages((prev) => [...prev, arrivalMessage]);
+    }
+  }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -76,29 +91,35 @@ function Messenger() {
   const handleNewMessage = async (e) => {
     e.preventDefault();
 
-    if (!newMessage) return;
-    if (!currentChat._id) return;
-    if (!user._id) return;
+    if (!newMessage || !currentChat._id || !user._id) return;
 
     const message = {
       conversationId: currentChat._id,
       sender: user._id,
       text: newMessage,
+      createdAt: Date.now(), // Add timestamp immediately
     };
+
+    // 🔹 Update UI immediately
+    setMessages((prevMessages) => [...prevMessages, message]);
 
     const receiverId = currentChat.members.find(
       (member) => member !== user._id
     );
 
     socket.current.emit("sendMessage", {
-      senderId: message.sender,
-      receiverId: receiverId,
-      text: message.text,
+      senderId: user._id,
+      receiverId,
+      text: newMessage,
     });
 
     try {
       const res = await axios.post("/api/messages/", message);
-      setMessages([...messages, res.data]);
+      setMessages((prevMessages) =>
+        prevMessages.map((m) =>
+          m.createdAt === message.createdAt ? res.data : m
+        )
+      );
     } catch (err) {
       console.log(err);
     }
