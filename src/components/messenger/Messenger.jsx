@@ -16,6 +16,7 @@ function Messenger() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const socket = useRef();
 
   const scrollRef = useRef();
@@ -27,7 +28,12 @@ function Messenger() {
     socket.current.emit("sendUser", user?._id);
 
     socket.current.on("getUsers", (users) => {
-      console.log(users);
+      if (Array.isArray(users)) {
+        users = users.filter((user_) => user_.userId === user?._id);
+        setOnlineUsers(users);
+      } else {
+        console.log("Expected an array of users, but received:", users);
+      }
     });
 
     socket.current.on("getMessage", (message) => {
@@ -37,6 +43,11 @@ function Messenger() {
         createdAt: Date.now(),
       });
     });
+
+    return () => {
+      // Cleanup on component unmount
+      socket.current.disconnect();
+    };
   }, [user?._id]);
 
   useEffect(() => {
@@ -196,8 +207,12 @@ function Messenger() {
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            <ChatOnline />
-            <ChatOnline />
+            {onlineUsers?.map((onlineUser) => (
+              <ChatOnline
+                key={onlineUser.userId}
+                onlineUserId={onlineUser.userId}
+              />
+            ))}
           </div>
         </div>
       </div>
