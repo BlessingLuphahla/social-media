@@ -24,7 +24,7 @@ function Messenger() {
     if (!user?._id) return;
     socket.current = io("ws://localhost:4000");
 
-    socket.current.emit("sendUser", user._id);
+    socket.current.emit("sendUser", user?._id);
 
     socket.current.on("getUsers", (users) => {
       console.log(users);
@@ -37,11 +37,6 @@ function Messenger() {
         createdAt: Date.now(),
       });
     });
-
-    return () => {
-      socket.current.off("getMessage");
-      socket.current.disconnect();
-    };
   }, [user?._id]);
 
   useEffect(() => {
