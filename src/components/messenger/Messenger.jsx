@@ -3,7 +3,7 @@ import Topbar from "../topbar/TopBar";
 import Conversation from "../conversations/Conversation";
 import Message from "../message/Message";
 import ChatOnline from "../chatOnline/ChatOnline";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { io } from "socket.io-client";
@@ -31,9 +31,13 @@ function Messenger() {
     });
   }, [user?._id]);
 
-  // const sendMessage = (senderId, receiverId, text) => {
-  //   socket.emit("sendMessage", { senderId, receiverId, text });
-  // };
+  const sendMessage = (senderId, receiverId, text) => {
+    socket.current.emit("sendMessage", { senderId, receiverId, text });
+  };
+
+  useEffect(() => {
+    socket.current.on("getMessage");
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -46,8 +50,6 @@ function Messenger() {
       } catch (err) {
         if (err.name === "CanceledError") console.log("Request Was Cancelled");
         else console.log(err);
-
-        console.log(err);
       }
     };
 
@@ -56,21 +58,21 @@ function Messenger() {
     return () => {
       controller.abort();
     };
-  }, [user._id]);
+  }, [user?._id]);
+
+  const fetchMessages = useCallback(async () => {
+    if (!currentChat?._id) return;
+    try {
+      const res = await axios.get("/api/messages/" + currentChat._id);
+      setMessages(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [currentChat?._id]);
 
   useEffect(() => {
-    if (!currentChat) return;
-    const fetchMessages = async () => {
-      try {
-        const res = await axios.get("/api/messages/" + currentChat?._id);
-        setMessages(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     fetchMessages();
-  }, [currentChat]);
+  }, [fetchMessages]);
 
   const handleNewMessage = async (e) => {
     e.preventDefault();
@@ -84,6 +86,12 @@ function Messenger() {
       sender: user._id,
       text: newMessage,
     };
+
+    const receiverId = currentChat.members.find(
+      (member) => member !== user._id
+    );
+
+    sendMessage(message.sender, receiverId, message.text);
 
     try {
       const res = await axios.post("/api/messages/", message);
@@ -169,9 +177,6 @@ function Messenger() {
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            <ChatOnline />
-            <ChatOnline />
-            <ChatOnline />
             <ChatOnline />
             <ChatOnline />
           </div>
