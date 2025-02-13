@@ -12,18 +12,21 @@ function Messenger() {
   const { user } = useContext(AuthContext);
 
   const [conversations, setConversations] = useState(null);
-  const [currentChat, setCurrentChat] = useState({});
   const [messages, setMessages] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+
+  const [currentChat, setCurrentChat] = useState(null);
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
-  const [onlineUsers, setOnlineUsers] = useState([]);
   const socket = useRef();
 
   const scrollRef = useRef();
 
   useEffect(() => {
     if (!user?._id) return;
-    socket.current = io("ws://localhost:4000");
+    socket.current = io("ws://" + import.meta.env.VITE_SERVER_URL, {
+      transports: ["websocket", "polling"],
+    });
 
     socket.current.emit("sendUser", user?._id);
 
@@ -139,8 +142,6 @@ function Messenger() {
       behavior: "smooth",
     });
   }, [messages]);
-
- 
 
   return (
     <>
