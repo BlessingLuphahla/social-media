@@ -11,7 +11,7 @@ import { io } from "socket.io-client";
 function Messenger() {
   const { user } = useContext(AuthContext);
 
-  const [conversations, setConversations] = useState(null);
+  const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
 
@@ -87,9 +87,14 @@ function Messenger() {
     if (!currentChat?._id) return;
     try {
       const res = await axios.get("/api/messages/" + currentChat?._id);
-      setMessages(res.data);
+      console.log("Fetched messages:", res.data);
+      if (Array.isArray(res.data)) {
+        setMessages(res.data);
+      } else {
+        console.log("Unexpected response for messages:", res.data);
+      }
     } catch (err) {
-      console.log(err);
+      console.log("Error fetching messages:", err);
     }
   }, [currentChat?._id]);
 
@@ -154,19 +159,15 @@ function Messenger() {
               placeholder="Search for friends"
               className="chatMenuInput"
             />
-            {conversations?.map((convo, index) => {
-              console.log("messenger");
-              console.log(convo);
-              console.log("messenger");
-              return (
+            {Array.isArray(conversations) &&
+              conversations.map((convo, index) => (
                 <div
                   onClick={() => setCurrentChat(convo)}
                   key={convo?._id + index}
                 >
                   <Conversation conversation={convo} />
                 </div>
-              );
-            })}
+              ))}
           </div>
         </div>
         <div className="chatBox">
