@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 function Conversation({ conversation }) {
   const { user } = useContext(AuthContext);
 
-  const [friend, setFriend] = useState(null);
+  const [friend, setFriend] = useState({});
 
   useEffect(() => {
     const friendId = conversation?.members.find((id) => id !== user._id);

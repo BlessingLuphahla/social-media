@@ -11,11 +11,11 @@ import { io } from "socket.io-client";
 function Messenger() {
   const { user } = useContext(AuthContext);
 
-  const [conversations, setConversations] = useState(null);
+  const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState({});
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [arrivalMessage, setArrivalMessage] = useState({});
   const [onlineUsers, setOnlineUsers] = useState([]);
   const socket = useRef();
 
