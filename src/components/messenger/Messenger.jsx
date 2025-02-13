@@ -66,7 +66,7 @@ function Messenger() {
     const controller = new AbortController();
     const fetchConversations = async () => {
       try {
-        const res = await axios.get("/api/conversations/" + user._id, {
+        const res = await axios.get("/api/conversations/" + user?._id, {
           signal: controller.signal,
         });
         setConversations(res.data);
@@ -86,7 +86,7 @@ function Messenger() {
   const fetchMessages = useCallback(async () => {
     if (!currentChat?._id) return;
     try {
-      const res = await axios.get("/api/messages/" + currentChat._id);
+      const res = await axios.get("/api/messages/" + currentChat?._id);
       setMessages(res.data);
     } catch (err) {
       console.log(err);
@@ -100,11 +100,11 @@ function Messenger() {
   const handleNewMessage = async (e) => {
     e.preventDefault();
 
-    if (!newMessage || !currentChat._id || !user._id) return;
+    if (!newMessage || !currentChat?._id || !user?._id) return;
 
     const message = {
-      conversationId: currentChat._id,
-      sender: user._id,
+      conversationId: currentChat?._id,
+      sender: user?._id,
       text: newMessage,
       createdAt: Date.now(), // Add timestamp immediately
     };
@@ -112,12 +112,12 @@ function Messenger() {
     // 🔹 Update UI immediately
     setMessages((prevMessages) => [...prevMessages, message]);
 
-    const receiverId = currentChat.members.find(
-      (member) => member !== user._id
+    const receiverId = currentChat?.members.find(
+      (member) => member !== user?._id
     );
 
     socket.current.emit("sendMessage", {
-      senderId: user._id,
+      senderId: user?._id,
       receiverId,
       text: newMessage,
     });
@@ -161,7 +161,7 @@ function Messenger() {
               return (
                 <div
                   onClick={() => setCurrentChat(convo)}
-                  key={convo._id + index}
+                  key={convo?._id + index}
                 >
                   <Conversation conversation={convo} />
                 </div>
@@ -171,16 +171,16 @@ function Messenger() {
         </div>
         <div className="chatBox">
           <div className="chatBoxWrapper">
-            {currentChat._id ? (
+            {currentChat?._id ? (
               <>
                 <div className="chatBoxTop">
                   {messages?.map((message, index) => (
-                    <div ref={scrollRef} key={message._id + index}>
+                    <div ref={scrollRef} key={message?._id + index}>
                       <Message
-                        own={user._id == message.sender}
+                        own={user?._id == message.sender}
                         message={message}
                         messageImg={
-                          user.profilePic
+                          user?.profilePic
                             ? user?.profilePic
                             : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
                         }
