@@ -24,7 +24,7 @@ function Rightbar() {
   const { username } = useParams();
   const [followed, setFollowed] = useState(false);
   const [friends, setFriends] = useState([]);
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -136,8 +136,8 @@ function Rightbar() {
                 <img
                   src={
                     user.profilePic
-                      ? PF + "images/person/" + user.profilePic
-                      : PF + "images/person/defaultProfile.jpg"
+                      ? user.profilePic
+                      : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
                   }
                   alt=""
                   className="rightbarFollowingImg"

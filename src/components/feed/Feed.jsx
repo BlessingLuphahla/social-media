@@ -12,7 +12,7 @@ function Feed({ username }) {
   const [loading, setLoading] = useState(true);  // 🔹 Loading state
   const [error, setError] = useState(null);      // 🔹 Error handling
 
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ function Feed({ username }) {
               comments={post.comments}
               likes={post.likes}
               content={post.desc}
-              img={post.img ? PF + "images/person/" + post.img : null} // 🔹 Handle missing images
+              img={post.img ? post.img : null} // 🔹 Handle missing images
               userId={post.userId}
               postId={post._id}
             />

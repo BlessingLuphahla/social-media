@@ -4,7 +4,7 @@ import "./chatOnline.css";
 import { useEffect, useState } from "react";
 
 function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
   const [onlineUser, setOnlineUser] = useState({});
 
   const [conversations, setConversations] = useState(null);
@@ -55,8 +55,8 @@ function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
           <img
             src={
               onlineUser?.profilePic
-                ? PF + "images/person/" + onlineUser?.profilePic
-                : PF + "images/person/defaultProfile.jpg"
+                ? onlineUser?.profilePic
+                : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
             }
             alt=""
             className="chatOnlineImg"

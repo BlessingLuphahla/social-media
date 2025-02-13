@@ -46,7 +46,7 @@ function Post(post) {
     setIsLiked(!isLiked);
   };
 
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -69,8 +69,8 @@ function Post(post) {
                 className="postProfileImg"
                 src={
                   user.profilePic
-                    ? PF + "images/person/" + user.profilePic
-                    : PF + "images/person/defaultProfile.jpg"
+                    ? user.profilePic
+                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
                 }
                 alt=""
               />

@@ -140,7 +140,7 @@ function Messenger() {
     });
   }, [messages]);
 
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
 
   return (
     <>
@@ -180,8 +180,8 @@ function Messenger() {
                         message={message}
                         messageImg={
                           user.profilePic
-                            ? PF + "images/person/" + user?.profilePic
-                            : PF + "images/person/defaultProfile.jpg"
+                            ? user?.profilePic
+                            : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
                         }
                       />
                     </div>

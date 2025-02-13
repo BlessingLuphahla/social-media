@@ -18,7 +18,7 @@ import axios from "axios";
 function Sidebar() {
 
   const user = useContext(AuthContext).user;
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
 
   const [followingUsers, setFollowingUsers] = useState([]);
   useEffect(() => {
@@ -94,8 +94,8 @@ function Sidebar() {
             <img
               src={
                 user.profilePic
-                  ? PF + "images/person/" + user.profilePic
-                  : PF + "images/person/defaultProfile.jpg"
+                  ? user.profilePic
+                  : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
               }
               alt=""
               className="rightbarFollowingImg"

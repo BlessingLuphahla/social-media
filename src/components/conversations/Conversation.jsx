@@ -32,7 +32,7 @@ function Conversation({ conversation }) {
     };
   }, [conversation?.members, user._id]);
 
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
 
   return (
     <div className="conversation">
@@ -40,8 +40,8 @@ function Conversation({ conversation }) {
         className="conversationImg"
         src={
           friend?.profilePic
-            ? PF + "images/person/" + friend?.profilePic
-            : PF + "images/person/defaultProfile.jpg"
+            ? friend?.profilePic
+            : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
         }
       />
       <span className="conversationName">{friend?.username}</span>

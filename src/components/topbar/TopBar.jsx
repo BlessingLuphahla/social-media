@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 function TopBar() {
   const { user } = useContext(AuthContext);
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
 
   return (
     <div className="topbarContainer">
@@ -63,8 +63,8 @@ function TopBar() {
             <img
               src={
                 user.profilePic
-                  ? PF + "images/person/" + user.profilePic
-                  : PF + "images/person/defaultProfile.jpg"
+                  ? user.profilePic
+                  : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
               }
               alt="profile picture"
               className="topbarImg"

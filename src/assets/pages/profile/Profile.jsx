@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 function Profile() {
   const [user, setUser] = useState({});
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
 
   const username = useParams().username;
 
@@ -53,8 +53,8 @@ function Profile() {
                 className="profileCoverImg"
                 src={
                   user.coverPic
-                    ? PF + "images/person/" + user.coverPic
-                    : PF + "images/person/defaultProfile.jpg"
+                    ? user.coverPic
+                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
                 }
                 alt=""
               />
@@ -62,8 +62,8 @@ function Profile() {
                 className="profileUserImg"
                 src={
                   user.profilePic
-                    ? PF + "images/person/" + user.profilePic
-                    : PF + "images/person/defaultProfile.jpg"
+                    ? user.profilePic
+                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
                 }
                 alt=""
               />

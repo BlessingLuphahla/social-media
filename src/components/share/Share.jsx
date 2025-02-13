@@ -12,7 +12,7 @@ import { Cancel } from "@mui/icons-material";
 
 function Share() {
   const { user } = useContext(AuthContext);
-  const PF = import.meta.env.VITE_PUBLIC_FOLDER;
+ 
   const desc = useRef();
   const [file, setFile] = useState(null);
 
@@ -72,8 +72,8 @@ function Share() {
             className="shareProfileImg"
             src={
               user.profilePic
-                ? PF + "images/person/" + user.profilePic
-                : PF + "images/person/defaultProfile.jpg"
+                ? user.profilePic
+                : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
             }
             alt=""
           />
