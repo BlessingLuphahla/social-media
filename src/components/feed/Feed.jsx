@@ -10,7 +10,7 @@ import { AuthContext } from "../../context/AuthContext";
 function Feed({ username }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);  // 🔹 Loading state
-  const [error, setError] = useState({});      // 🔹 Error handling
+  const [error, setError] = useState(null);      // 🔹 Error handling
 
  
   const { user } = useContext(AuthContext);

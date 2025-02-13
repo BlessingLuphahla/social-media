@@ -7,7 +7,7 @@ function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
  
   const [onlineUser, setOnlineUser] = useState({});
 
-  const [conversations, setConversations] = useState([]);
+  const [conversations, setConversations] = useState(null);
 
   useEffect(() => {
     const controller = new AbortController();
