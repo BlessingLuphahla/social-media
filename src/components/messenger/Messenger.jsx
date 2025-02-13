@@ -24,7 +24,7 @@ function Messenger() {
 
   useEffect(() => {
     if (!user?._id) return;
-    socket.current = io("ws://" + import.meta.env.VITE_SERVER_URL, {
+    socket.current = io(import.meta.env.VITE_SERVER_URL, {
       transports: ["websocket", "polling"],
     });
 
