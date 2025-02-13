@@ -67,7 +67,7 @@ function Feed({ username }) {
         )}
 
         {/* 🔹 Display posts */}
-        {!loading && posts.map((post, index) => {
+        {!loading && posts?.map((post, index) => {
           const timeAgo = formatDistanceToNow(new Date(post.createdAt), {
             addSuffix: true,
           });

@@ -27,7 +27,7 @@ function Sidebar() {
 
       try {
         const usersData = await Promise.all(
-          user.followings.map((followingId) =>
+          user.followings?.map((followingId) =>
             axios
               .get(
                 `/api/users?userId=${followingId}`
@@ -89,7 +89,7 @@ function Sidebar() {
         <hr className="sidebarHr" />
       </div>
       <ul className="sidebarFriendList">
-        {followingUsers.map((user) => (
+        {followingUsers?.map((user) => (
           <div key={user._id} className="rightbarFollowing">
             <img
               src={

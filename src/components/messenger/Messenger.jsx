@@ -122,7 +122,7 @@ function Messenger() {
     try {
       const res = await axios.post("/api/messages/", message);
       setMessages((prevMessages) =>
-        prevMessages.map((m) =>
+        prevMessages?.map((m) =>
           m.createdAt === message.createdAt ? res.data : m
         )
       );

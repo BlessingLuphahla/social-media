@@ -44,7 +44,7 @@ function Rightbar() {
       const getFriends = async () => {
         try {
           const usersData = await Promise.all(
-            user.followings.map((followingId) =>
+            user.followings?.map((followingId) =>
               axios.get(import.meta.env.VITE_SERVER_URL+`/api/users?userId=${followingId}`).then((res) => res.data)
             )
           );
@@ -130,7 +130,7 @@ function Rightbar() {
         </div>
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
-          {friends.map((user) => (
+          {friends?.map((user) => (
             <div key={user._id} className="rightbarFollowing">
               <Link to={`/profile/${user.username}`}>
                 <img
