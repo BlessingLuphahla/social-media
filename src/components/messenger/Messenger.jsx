@@ -153,14 +153,19 @@ function Messenger() {
               placeholder="Search for friends"
               className="chatMenuInput"
             />
-            {conversations?.map((convo, index) => (
-              <div
-                onClick={() => setCurrentChat(convo)}
-                key={convo._id + index}
-              >
-                <Conversation conversation={convo} />
-              </div>
-            ))}
+            {conversations?.map((convo, index) => {
+              console.log("messenger");
+              console.log(convo);
+              console.log("messenger");
+              return (
+                <div
+                  onClick={() => setCurrentChat(convo)}
+                  key={convo._id + index}
+                >
+                  <Conversation conversation={convo} />
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="chatBox">
@@ -212,6 +217,7 @@ function Messenger() {
                 key={onlineUser.userId}
                 onlineUserId={onlineUser.userId}
                 setCurrentChat={setCurrentChat}
+                currentUser={user}
               />
             ))}
           </div>

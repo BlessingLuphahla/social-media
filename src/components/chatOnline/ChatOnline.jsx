@@ -1,11 +1,34 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import "./chatOnline.css";
 import { useEffect, useState } from "react";
 
-// eslint-disable-next-line react/prop-types
-function ChatOnline({ onlineUserId, setCurrentChat }) {
+function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
   const [onlineUser, setOnlineUser] = useState({});
+
+  const [conversations, setConversations] = useState(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const fetchConversation = async () => {
+      try {
+        const res = await axios.get("/api/conversations/" + onlineUserId, {
+          signal: controller.signal,
+        });
+        setConversations(res.data);
+      } catch (err) {
+        if (err.name === "CanceledError") console.log("Request Was Cancelled");
+        else console.log(err);
+      }
+    };
+
+    fetchConversation();
+
+    return () => {
+      controller.abort();
+    };
+  }, [onlineUserId]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -17,12 +40,17 @@ function ChatOnline({ onlineUserId, setCurrentChat }) {
     fetchUser();
   }, [onlineUserId]);
 
+  const handleClick = () => {
+    const conversation = conversations.find((conv) =>
+      conv.members.includes(currentUser._id)
+    );
+
+    setCurrentChat(conversation || conversations);
+  };
+
   return (
     <div className="chatOnline">
-      <div
-        className="chatOnlineFriend"
-        onClick={() => setCurrentChat(onlineUser)}
-      >
+      <div className="chatOnlineFriend" onClick={handleClick}>
         <div className="chatOnlineImgContainer">
           <img
             src={
