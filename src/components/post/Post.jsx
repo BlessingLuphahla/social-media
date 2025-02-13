@@ -70,7 +70,7 @@ function Post(post) {
                 src={
                   user.profilePic
                     ? PF + "images/person/" + user.profilePic
-                    : "defaultProfile.jpg"
+                    : PF + "images/person/defaultProfile.jpg"
                 }
                 alt=""
               />

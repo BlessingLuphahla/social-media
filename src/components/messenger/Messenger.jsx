@@ -29,7 +29,7 @@ function Messenger() {
 
     socket.current.on("getUsers", (users) => {
       if (Array.isArray(users)) {
-        users = users.filter((user_) => user_.userId === user?._id);
+        users = users.filter((user_) => user_.userId !== user?._id);
         setOnlineUsers(users);
       } else {
         console.log("Expected an array of users, but received:", users);
@@ -211,6 +211,7 @@ function Messenger() {
               <ChatOnline
                 key={onlineUser.userId}
                 onlineUserId={onlineUser.userId}
+                setCurrentChat={setCurrentChat}
               />
             ))}
           </div>

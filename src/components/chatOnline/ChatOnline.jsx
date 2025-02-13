@@ -3,12 +3,9 @@ import "./chatOnline.css";
 import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-function ChatOnline({ onlineUserId }) {
+function ChatOnline({ onlineUserId, setCurrentChat }) {
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
   const [onlineUser, setOnlineUser] = useState({});
-
-  console.log("onlineUser");
-  console.log(onlineUser);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -18,14 +15,21 @@ function ChatOnline({ onlineUserId }) {
       setOnlineUser(res.data);
     };
     fetchUser();
-  });
+  }, [onlineUserId]);
 
   return (
     <div className="chatOnline">
-      <div className="chatOnlineFriend">
+      <div
+        className="chatOnlineFriend"
+        onClick={() => setCurrentChat(onlineUser)}
+      >
         <div className="chatOnlineImgContainer">
           <img
-            src={PF + "images/person/" + onlineUser?.profilePic}
+            src={
+              onlineUser?.profilePic
+                ? PF + "images/person/" + onlineUser?.profilePic
+                : PF + "images/person/defaultProfile.jpg"
+            }
             alt=""
             className="chatOnlineImg"
           />
