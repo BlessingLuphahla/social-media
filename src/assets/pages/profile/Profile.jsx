@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 
 function Profile() {
   const [user, setUser] = useState({});
- 
 
   const username = useParams().username;
 
@@ -36,8 +35,6 @@ function Profile() {
     return () => {
       controller.abort();
     };
-
-
   }, [username]);
 
   return (
@@ -54,7 +51,7 @@ function Profile() {
                 src={
                   user.coverPic
                     ? user.coverPic
-                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739522436/default_dhfy2s.png"
+                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739523073/2d7958edd5bd8d1ee78d05268f0f89eb_gftjah.jpg"
                 }
                 alt=""
               />
