@@ -47,7 +47,7 @@ function Share() {
       newPost.img = fileName;
 
       try {
-        const res = await axios.post(import.meta.env.VITE_SERVER_URL+"/api/upload", data);
+        const res = await axios.post(import.meta.env.VITE_SERVER_URL+"upload", data);
         newPost.img = res.data.url;
       } catch (err) {
         console.log("File upload failed:", err);
