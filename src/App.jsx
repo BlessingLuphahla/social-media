@@ -12,8 +12,8 @@ function App() {
   const { user } = useContext(AuthContext);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route
             path="/"
@@ -40,8 +40,8 @@ function App() {
             element={user ? <Profile /> : <Navigate to="/login" />}
           />
         </Routes>
-      </BrowserRouter>
-    </Suspense>
+      </Suspense>
+    </BrowserRouter>
   );
 }
 
