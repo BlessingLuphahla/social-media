@@ -56,7 +56,7 @@ function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
             src={
               onlineUser?.profilePic
                 ? onlineUser?.profilePic
-                : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
+                : "https://res.cloudinary.com/djopur3de/image/upload/v1739522436/default_dhfy2s.png"
             }
             alt=""
             className="chatOnlineImg"

@@ -54,7 +54,7 @@ function Profile() {
                 src={
                   user.coverPic
                     ? user.coverPic
-                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
+                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739522436/default_dhfy2s.png"
                 }
                 alt=""
               />
@@ -63,7 +63,7 @@ function Profile() {
                 src={
                   user.profilePic
                     ? user.profilePic
-                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739445344/defaultProfile.jpg"
+                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739522436/default_dhfy2s.png"
                 }
                 alt=""
               />
