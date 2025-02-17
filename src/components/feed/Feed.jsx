@@ -79,7 +79,7 @@ function Feed({ username }) {
               comments={post.comments}
               likes={post.likes}
               content={post.desc}
-              img={post.img ? post.img : null} // 🔹 Handle missing images
+              img={post.img ? post.img : null}
               userId={post.userId}
               postId={post._id}
             />
