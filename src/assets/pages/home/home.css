@@ -1,7 +1,5 @@
-.homeContainer{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.homeContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
-
-

@@ -6,6 +6,7 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useParams } from "react-router-dom";
 import { Add, Remove } from "@mui/icons-material";
+import { useScreen } from "../../context/ScreenContext";
 
 /**
  * Rightbar component is responsible for displaying additional user-related information
@@ -24,6 +25,8 @@ function Rightbar() {
   const { username } = useParams();
   const [followed, setFollowed] = useState(false);
   const [friends, setFriends] = useState([]);
+
+  const { isMobile } = useScreen();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -95,7 +98,6 @@ function Rightbar() {
 
   // HomeRightBar displays the list of online friends and birthday info
 
-
   const HomeRightBar = () => {
     return (
       <>
@@ -163,9 +165,9 @@ function Rightbar() {
   };
 
   return (
-    <div className="rightbar">
+    <div className="rightbar" style={{ display: isMobile && "none" }}>
       <div className="rightbarWrapper">
-        {username ? <ProfileRightBar /> : <HomeRightBar />}
+        {username ? <ProfileRightBar /> : !isMobile && <HomeRightBar />}
       </div>
     </div>
   );
