@@ -166,6 +166,7 @@
   .loginBox {
     height: 360px;
     padding: 20px;
+    gap: 20px;
   }
 
   .loginInput {
@@ -198,6 +199,7 @@
   .loginBox {
     height: 360px;
     padding: 20px;
+    gap: 20px;
   }
 
   .loginButton {
