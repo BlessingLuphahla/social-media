@@ -27,6 +27,8 @@
 
 .topbarCenter {
   flex: 5;
+  display: flex;
+  justify-content: center;
 }
 
 .searchbar {
@@ -39,20 +41,11 @@
   padding: 5px;
 }
 
-.searchIcon {
-  font-size: 20px !important;
-  margin-left: 15px;
-}
-
 .searchInput {
   border: none;
   outline: none;
   width: 90%;
   height: 90%;
-}
-
-.searchInput:focus {
-  outline: none;
 }
 
 .topbarRight {
@@ -103,9 +96,62 @@
   cursor: pointer;
 }
 
-.topbarImgContainer {
-  position: relative;
-  margin-left: 10px;
-  margin-right: 10px;
+/* Hamburger Menu Icon for Mobile */
+.hamburgerMenu {
+  display: none;
   cursor: pointer;
+}
+
+/* Mobile Menu Styles */
+.mobileMenuOpen {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark-red);
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  justify-content: flex-start;
+  height: 300px;
+}
+
+.mobileMenuOpen .topbarLink {
+  margin: 10px 0;
+  color: white;
+  font-size: 16px;
+}
+
+.mobileMenuOpen .topbarIconItem {
+  margin-bottom: 10px;
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+  .topbarLeft, .topbarCenter, .topbarRight {
+    display: none;
+  }
+
+  /* Show hamburger icon */
+  .hamburgerMenu {
+    display: block;
+    margin-left: 20px;
+  }
+
+  .topbarContainer {
+    position: relative;
+  }
+
+  .topbarCenter {
+    display: none;
+  }
+
+  .topbarRight {
+    display: none;
+  }
+
+  /* Display mobile menu when open */
+  .mobileMenuOpen {
+    display: flex;
+  }
 }
