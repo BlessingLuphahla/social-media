@@ -96,7 +96,6 @@ function TopBar() {
                 user.profilePic ||
                 "https://res.cloudinary.com/djopur3de/image/upload/v1739522436/default_dhfy2s.png"
               }
-              alt="dp"
               className="topbarImg"
             />
             <span>{user.username}</span>
@@ -137,15 +136,31 @@ function TopBar() {
               <NotificationsIcon />
               <span className="topbarIconBadge">1</span>
             </div>
-            <Link to={`/profile/${user.username}`}>
+            <Link
+              style={{
+                display: "flex",
+                color: "white",
+                textDecoration: "none",
+                gap: "5px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              to={`/profile/${user.username}`}
+            >
               <img
                 src={
                   user.profilePic ||
                   "https://res.cloudinary.com/djopur3de/image/upload/v1739522436/default_dhfy2s.png"
                 }
-                alt="dp"
                 className="topbarImg"
               />
+              <div
+                style={{
+                  textTransform: "capitalize",
+                }}
+              >
+                {user.username}
+              </div>
             </Link>
           </div>
         </div>

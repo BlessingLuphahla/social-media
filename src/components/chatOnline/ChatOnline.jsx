@@ -7,6 +7,7 @@ function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
   const [onlineUser, setOnlineUser] = useState({});
 
   const [conversations, setConversations] = useState(null);
+  const [NewConvo, setNewConvo] = useState(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -39,12 +40,23 @@ function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
     fetchUser();
   }, [onlineUserId]);
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    if (!currentUser._id) return;
+
     const conversation = conversations.find((conv) =>
       conv.members.includes(currentUser._id)
     );
 
-    setCurrentChat(conversation);
+    if (!conversation) {
+      const res = await axios.post("/api/conversations/", {
+        senderId: currentUser._id,
+        receiverId: onlineUserId,
+      });
+
+      setNewConvo(res.data);
+    }
+
+    setCurrentChat(conversation || NewConvo);
   };
 
   return (

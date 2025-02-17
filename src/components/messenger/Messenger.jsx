@@ -214,6 +214,7 @@ function Messenger() {
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
+            Online Chats <br />
             {onlineUsers?.map((onlineUser) => (
               <ChatOnline
                 key={onlineUser.userId}
