@@ -80,12 +80,10 @@ function Post(post) {
             <span className="postDate">{post.date}</span>
           </div>
           <div className="postTopRight">
-            {/* More options button */}
             <IconButton onClick={handleMenuOpen}>
               <MoreVert />
             </IconButton>
 
-            {/* Dropdown menu */}
             <Menu anchorEl={anchorEl} open={open} onClose={handleMenuClose}>
               <MenuItem>Delete Post (doesnt work yet)</MenuItem>
             </Menu>

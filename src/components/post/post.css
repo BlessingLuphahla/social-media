@@ -19,6 +19,7 @@
 .postTopLeft {
   display: flex;
   align-items: center;
+  flex-direction: row;
 }
 
 .postProfileImg {
@@ -60,6 +61,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
 }
 
 .postBottomLeft {
@@ -107,7 +109,7 @@
   }
 
   .postTopLeft {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 
@@ -135,7 +137,7 @@
   }
 
   .postBottom {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
   }

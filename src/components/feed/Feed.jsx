@@ -10,7 +10,6 @@ import { AuthContext } from "../../context/AuthContext";
 function Feed({ username }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);  // 🔹 Loading state
-  const [error, setError] = useState(null);      // 🔹 Error handling
 
  
   const { user } = useContext(AuthContext);
@@ -21,7 +20,6 @@ function Feed({ username }) {
 
       try {
         setLoading(true);
-        setError(null);
         let res;
 
 
@@ -38,7 +36,6 @@ function Feed({ username }) {
         }
       } catch (err) {
         console.error("Error fetching posts:", err);
-        setError("Failed to load posts. Try again later.");
       } finally {
         setLoading(false);
       }
@@ -55,7 +52,6 @@ function Feed({ username }) {
 
         {/* 🔹 Loading & Error Messages */}
         {loading && <p className="loading">Loading posts...</p>}
-        {error && <p className="error">{error}</p>}
 
         {/* 🔹 Different messages for Home & Profile Pages */}
         {!loading && posts.length === 0 && (
@@ -66,7 +62,6 @@ function Feed({ username }) {
           </p>
         )}
 
-        {/* 🔹 Display posts */}
         {!loading && posts?.map((post, index) => {
           const timeAgo = formatDistanceToNow(new Date(post.createdAt), {
             addSuffix: true,
