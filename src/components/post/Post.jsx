@@ -83,7 +83,7 @@ function Post(post) {
             </Link>
 
             <span className="postUsername">{user.username}</span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{post.date.replace("about", "")}</span>
           </div>
           <div className="postTopRight">
             <IconButton onClick={handleMenuOpen}>

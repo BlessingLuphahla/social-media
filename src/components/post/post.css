@@ -106,7 +106,8 @@
   .postTop {
     flex-direction: row;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .postTopLeft {
@@ -126,7 +127,8 @@
 
   .postDate {
     font-size: 11px;
-    margin-left: 0;
+    margin-left: 14px;
+    margin-top: 2px;
   }
 
   .postCenter {
@@ -140,12 +142,13 @@
   .postBottom {
     flex-direction: row;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 
   .postBottomLeft {
     flex-direction: row;
     align-items: flex-start;
+    gap: 5px;
   }
 
   .postIcons {
