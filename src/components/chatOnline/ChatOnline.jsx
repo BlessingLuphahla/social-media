@@ -4,7 +4,6 @@ import "./chatOnline.css";
 import { useEffect, useState } from "react";
 
 function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
- 
   const [onlineUser, setOnlineUser] = useState({});
 
   const [conversations, setConversations] = useState(null);
@@ -45,7 +44,7 @@ function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
       conv.members.includes(currentUser._id)
     );
 
-    setCurrentChat(conversation || conversations);
+    setCurrentChat(conversation);
   };
 
   return (
