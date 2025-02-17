@@ -102,20 +102,37 @@
   cursor: pointer;
 }
 
-/* Mobile Menu Styles */
 .mobileMenuOpen {
   display: flex;
   flex-direction: column;
-  background-color: var(--dark-red);
-  position: absolute;
   align-items: center;
+  background-color: black;
+  position: absolute;
   top: 60px;
   left: 0;
   width: 100%;
-  padding: 10px;
-  justify-content: center;
-  height: 90vh;
-  gap: 20px;
+  height: 100vh;
+  padding: 20px 0;
+  gap: 15px;
+}
+
+.mobileMenuOpen .topbarLink,
+.mobileMenuOpen .topbarIconItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.profileSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  margin-top: 35vh;
 }
 
 .mobileMenuOpen .topbarLink {
@@ -134,6 +151,16 @@
   .topbarCenter,
   .topbarRight {
     display: none;
+  }
+
+  .topbarIcons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .topbarIcons {
+    flex-direction: column;
+    color: white;
   }
 
   /* Show hamburger icon */

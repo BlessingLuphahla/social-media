@@ -7,6 +7,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useScreen } from "../../context/ScreenContext";
+import HomeIcon from "@mui/icons-material/Home";
+import TimelineIcon from "@mui/icons-material/Timeline";
 
 function TopBar() {
   const { user } = useContext(AuthContext);
@@ -16,7 +18,6 @@ function TopBar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
 
   return (
     <div className="topbarContainer">
@@ -63,35 +64,26 @@ function TopBar() {
       {/* Mobile Menu */}
       {isMobile && isMenuOpen && (
         <div className="mobileMenuOpen">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <span className="topbarLink">Home Page</span>
+          <Link to="/" className="topbarLink">
+            <HomeIcon /> Home Page
           </Link>
-          <Link
-            to={`/profile/${user.username}`}
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            <span className="topbarLink">Timeline</span>
+          <Link to={`/profile/${user.username}`} className="topbarLink">
+            <TimelineIcon /> Timeline
           </Link>
           <div className="topbarIcons">
-            <div className="topbarIconItem">
-              <PersonIcon htmlColor="white" />
+            <Link to="/messenger" className="topbarIconItem">
+              <ChatIcon /> Chats <span className="topbarIconBadge">2</span>
+            </Link>
+            <Link to="/friends" className="topbarIconItem">
+              <PersonIcon /> New Friends
               <span className="topbarIconBadge">1</span>
-            </div>
-            <div className="topbarIconItem">
-              <Link
-                to="/messenger"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                <ChatIcon htmlColor="white" />
-              </Link>
-              <span className="topbarIconBadge">2</span>
-            </div>
-            <div className="topbarIconItem">
-              <NotificationsIcon htmlColor="white" />
+            </Link>
+            <Link to="/notifications" className="topbarIconItem">
+              <NotificationsIcon /> Notifications
               <span className="topbarIconBadge">1</span>
-            </div>
+            </Link>
           </div>
-          <Link to={`/profile/${user.username}`}>
+          <Link to={`/profile/${user.username}`} className="profileSection">
             <img
               src={
                 user.profilePic ||
@@ -100,6 +92,7 @@ function TopBar() {
               alt="dp"
               className="topbarImg"
             />
+            <span>{user.username}</span>
           </Link>
         </div>
       )}
