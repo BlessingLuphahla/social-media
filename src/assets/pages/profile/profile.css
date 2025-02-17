@@ -28,8 +28,12 @@
   left: 0;
   right: 0;
   margin: auto;
-  top: 150px;
+  top: 100px;
   border: 3px solid white;
+}
+
+.profileUserImg:hover {
+  opacity: 0.8;
 }
 
 .profileInfo {

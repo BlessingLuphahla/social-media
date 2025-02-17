@@ -70,7 +70,16 @@ function Post(post) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`/profile/${user.username}`}>
+            <Link
+              style={{
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "black",
+              }}
+              to={`/profile/${user.username}`}
+            >
               <img
                 className="postProfileImg"
                 src={
@@ -80,9 +89,9 @@ function Post(post) {
                 }
                 alt=""
               />
+              <span className="postUsername">{user.username}</span>
             </Link>
 
-            <span className="postUsername">{user.username}</span>
             <span className="postDate">{post.date.replace("about", "")}</span>
           </div>
           <div className="postTopRight">

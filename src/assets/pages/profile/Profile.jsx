@@ -42,7 +42,6 @@ function Profile() {
       <TopBar />
       <div className="profile">
         <Sidebar />
-
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">

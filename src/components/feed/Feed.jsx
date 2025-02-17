@@ -9,9 +9,8 @@ import { AuthContext } from "../../context/AuthContext";
 
 function Feed({ username }) {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);  // 🔹 Loading state
+  const [loading, setLoading] = useState(true); // 🔹 Loading state
 
- 
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -22,16 +21,21 @@ function Feed({ username }) {
         setLoading(true);
         let res;
 
-
         if (username) {
-          res = await axios.get(import.meta.env.VITE_SERVER_URL+`/api/posts/profile/${username}/`);
+          res = await axios.get(
+            import.meta.env.VITE_SERVER_URL + `/api/posts/profile/${username}/`
+          );
         } else {
-          res = await axios.get(import.meta.env.VITE_SERVER_URL+`/api/posts/timeline/${user._id}`);
+          res = await axios.get(
+            import.meta.env.VITE_SERVER_URL + `/api/posts/timeline/${user._id}`
+          );
         }
 
         if (res?.data) {
           setPosts(
-            res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            res.data.sort(
+              (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            )
           );
         }
       } catch (err) {
@@ -48,7 +52,7 @@ function Feed({ username }) {
     <div className="feed">
       <div className="feedWrapper">
         {/* 🔹 Show Share component only on user’s own profile */}
-        {(!username || username === user?.username ) && <Share />}
+        {(!username || username === user?.username) && <Share />}
 
         {/* 🔹 Loading & Error Messages */}
         {loading && <p className="loading">Loading posts...</p>}
@@ -62,24 +66,25 @@ function Feed({ username }) {
           </p>
         )}
 
-        {!loading && posts?.map((post, index) => {
-          const timeAgo = formatDistanceToNow(new Date(post.createdAt), {
-            addSuffix: true,
-          });
+        {!loading &&
+          posts?.map((post, index) => {
+            const timeAgo = formatDistanceToNow(new Date(post.createdAt), {
+              addSuffix: true,
+            });
 
-          return (
-            <Post
-              key={post._id + index}
-              date={timeAgo}
-              comments={post.comments}
-              likes={post.likes}
-              content={post.desc}
-              img={post.img ? post.img : null}
-              userId={post.userId}
-              postId={post._id}
-            />
-          );
-        })}
+            return (
+              <Post
+                key={post._id + index}
+                date={timeAgo}
+                comments={post.comments}
+                likes={post.likes}
+                content={post.desc}
+                img={post.img ? post.img : null}
+                userId={post.userId}
+                postId={post._id}
+              />
+            );
+          })}
       </div>
     </div>
   );
