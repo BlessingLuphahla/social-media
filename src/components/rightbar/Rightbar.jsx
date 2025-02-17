@@ -6,6 +6,7 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useParams } from "react-router-dom";
 import { Add, Remove } from "@mui/icons-material";
+import { useScreen } from "../../context/ScreenContext";
 
 /**
  * Rightbar component is responsible for displaying additional user-related information
@@ -24,13 +25,15 @@ function Rightbar() {
   const { username } = useParams();
   const [followed, setFollowed] = useState(false);
   const [friends, setFriends] = useState([]);
- 
+  const { isMobile } = useScreen();
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         if (!username) return;
-        const res = await axios.get(import.meta.env.VITE_SERVER_URL+`/api/users?username=${username}`);
+        const res = await axios.get(
+          import.meta.env.VITE_SERVER_URL + `/api/users?username=${username}`
+        );
         setUser(res.data);
       } catch (error) {
         console.error("Error fetching user:", error);
@@ -45,7 +48,12 @@ function Rightbar() {
         try {
           const usersData = await Promise.all(
             user.followings?.map((followingId) =>
-              axios.get(import.meta.env.VITE_SERVER_URL+`/api/users?userId=${followingId}`).then((res) => res.data)
+              axios
+                .get(
+                  import.meta.env.VITE_SERVER_URL +
+                    `/api/users?userId=${followingId}`
+                )
+                .then((res) => res.data)
             )
           );
           setFriends(usersData);
@@ -67,14 +75,20 @@ function Rightbar() {
     try {
       if (followed) {
         setFollowed(false);
-        await axios.put(import.meta.env.VITE_SERVER_URL+`/api/users/${user._id}/unfollow`, {
-          userId: currentUser._id,
-        });
+        await axios.put(
+          import.meta.env.VITE_SERVER_URL + `/api/users/${user._id}/unfollow`,
+          {
+            userId: currentUser._id,
+          }
+        );
       } else {
         setFollowed(true);
-        await axios.put(import.meta.env.VITE_SERVER_URL+`/api/users/${user._id}/follow`, {
-          userId: currentUser._id,
-        });
+        await axios.put(
+          import.meta.env.VITE_SERVER_URL + `/api/users/${user._id}/follow`,
+          {
+            userId: currentUser._id,
+          }
+        );
       }
     } catch (err) {
       console.log(err);
@@ -83,25 +97,25 @@ function Rightbar() {
 
   // HomeRightBar displays the list of online friends and birthday info
 
+  if (isMobile) return;
+
   const HomeRightBar = () => {
-   
-  
     return (
       <>
         <div className="birthdayContainer">
           <img className="birthdayImg" src={gift} alt="" />
           <span className="birthdayText">
-            <b>Carly Mushkit</b> and <b>3 other friends</b> have a birthday today.
+            <b>Carly Mushkit</b> and <b>3 other friends</b> have a birthday
+            today.
           </span>
         </div>
         <img src={ad} alt="" className="rightbarAd" />
-  
+
         <h4 className="rightbarTitle">Trending Posts</h4>
         <div>No posts are trending</div>
       </>
     );
   };
-  
 
   // ProfileRightBar displays detailed user info and follow/unfollow button
   const ProfileRightBar = () => {

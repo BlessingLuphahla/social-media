@@ -14,13 +14,15 @@ import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { useScreen } from "../../context/ScreenContext";
 
 function Sidebar() {
-
   const user = useContext(AuthContext).user;
- 
+
+  const { isMobile } = useScreen();
 
   const [followingUsers, setFollowingUsers] = useState([]);
+
   useEffect(() => {
     const fetchFollowings = async () => {
       if (!user?.followings) return;
@@ -29,9 +31,7 @@ function Sidebar() {
         const usersData = await Promise.all(
           user.followings?.map((followingId) =>
             axios
-              .get(
-                `/api/users?userId=${followingId}`
-              )
+              .get(`/api/users?userId=${followingId}`)
               .then((res) => res.data)
           )
         );
@@ -43,6 +43,8 @@ function Sidebar() {
 
     fetchFollowings();
   }, [user.followings]);
+
+  if (isMobile) return;
 
   return (
     <div className="sidebar">
@@ -106,7 +108,7 @@ function Sidebar() {
       </ul>
 
       <div className="sidebarFooter">
-        <img src={''} alt="" className="sidebarFooterImg" />
+        <img src={""} alt="" className="sidebarFooterImg" />
         <div className="sidebarFooterInfo">
           <span className="sidebarFooterName">Redd Axe</span> <br />
           <span className="sidebarFooterTitle">Software Engineer</span>

@@ -39,9 +39,9 @@ function Profile() {
 
   return (
     <>
-      <TopBar></TopBar>
+      <TopBar />
       <div className="profile">
-        <Sidebar></Sidebar>
+        <Sidebar />
 
         <div className="profileRight">
           <div className="profileRightTop">

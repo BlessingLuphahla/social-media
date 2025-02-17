@@ -17,6 +17,7 @@ function TopBar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
