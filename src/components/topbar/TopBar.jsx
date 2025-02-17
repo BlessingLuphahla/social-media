@@ -64,23 +64,28 @@ function TopBar() {
       {/* Mobile Menu */}
       {isMobile && isMenuOpen && (
         <div className="mobileMenuOpen">
+          <Link
+            style={{ marginBottom: "5px" }}
+            to={`/profile/${user.username}`}
+            className="topbarLink"
+          >
+            <TimelineIcon /> Timeline
+          </Link>
           <Link to="/" className="topbarLink">
             <HomeIcon /> Home Page
           </Link>
-          <Link to={`/profile/${user.username}`} className="topbarLink">
-            <TimelineIcon /> Timeline
-          </Link>
           <div className="topbarIcons">
-            <Link to="/messenger" className="topbarIconItem">
-              <ChatIcon /> Chats <span className="topbarIconBadge">2</span>
-            </Link>
             <Link to="/friends" className="topbarIconItem">
               <PersonIcon /> New Friends
-              <span className="topbarIconBadge">1</span>
+              {!isMobile && <span className="topbarIconBadge">1</span>}
             </Link>
             <Link to="/notifications" className="topbarIconItem">
               <NotificationsIcon /> Notifications
-              <span className="topbarIconBadge">1</span>
+              {!isMobile && <span className="topbarIconBadge">1</span>}
+            </Link>
+            <Link to="/messenger" className="topbarIconItem">
+              <ChatIcon /> Messages
+              {!isMobile && <span className="topbarIconBadge">2</span>}
             </Link>
           </div>
           <Link to={`/profile/${user.username}`} className="profileSection">
@@ -101,9 +106,6 @@ function TopBar() {
       {!isMobile && (
         <div className="topbarRight">
           <div className="topbarLinks">
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-              <span className="topbarLink">Home Page</span>
-            </Link>
             <Link
               to={`/profile/${user.username}`}
               style={{ textDecoration: "none", color: "white" }}
