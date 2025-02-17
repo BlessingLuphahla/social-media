@@ -108,12 +108,14 @@
   flex-direction: column;
   background-color: var(--dark-red);
   position: absolute;
+  align-items: center;
   top: 60px;
   left: 0;
   width: 100%;
   padding: 10px;
-  justify-content: flex-start;
-  height: 300px;
+  justify-content: center;
+  height: 90vh;
+  gap: 20px;
 }
 
 .mobileMenuOpen .topbarLink {
@@ -128,7 +130,9 @@
 
 /* Media Queries for Mobile */
 @media (max-width: 768px) {
-  .topbarLeft, .topbarCenter, .topbarRight {
+  .topbarLeft,
+  .topbarCenter,
+  .topbarRight {
     display: none;
   }
 

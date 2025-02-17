@@ -27,8 +27,21 @@ function TopBar() {
 
       {/* Hamburger Menu Icon (only visible on mobile) */}
       {isMobile && (
-        <div className="hamburgerMenu" onClick={toggleMenu}>
-          <Menu />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "start",
+            alignContent: "center",
+            gap: "20%",
+            width: "100%",
+          }}
+        >
+          <div className="hamburgerMenu" onClick={toggleMenu}>
+            <Menu htmlColor="white" />
+          </div>
+          <Link className="logo" to="/">
+            Redd Media
+          </Link>
         </div>
       )}
 
@@ -60,7 +73,7 @@ function TopBar() {
           </Link>
           <div className="topbarIcons">
             <div className="topbarIconItem">
-              <PersonIcon />
+              <PersonIcon htmlColor="white" />
               <span className="topbarIconBadge">1</span>
             </div>
             <div className="topbarIconItem">
@@ -68,12 +81,12 @@ function TopBar() {
                 to="/messenger"
                 style={{ textDecoration: "none", color: "white" }}
               >
-                <ChatIcon />
+                <ChatIcon htmlColor="white" />
               </Link>
               <span className="topbarIconBadge">2</span>
             </div>
             <div className="topbarIconItem">
-              <NotificationsIcon />
+              <NotificationsIcon htmlColor="white" />
               <span className="topbarIconBadge">1</span>
             </div>
           </div>
