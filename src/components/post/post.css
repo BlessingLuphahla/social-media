@@ -67,6 +67,7 @@
 .postBottomLeft {
   display: flex;
   align-items: center;
+  flex-direction: row;
 }
 
 .postIcons {
@@ -103,7 +104,7 @@
   }
 
   .postTop {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
   }
@@ -143,7 +144,7 @@
   }
 
   .postBottomLeft {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 
