@@ -9,6 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useScreen } from "../../context/ScreenContext";
 import HomeIcon from "@mui/icons-material/Home";
 import TimelineIcon from "@mui/icons-material/Timeline";
+import Logout from "../Logout/Logout";
 
 function TopBar() {
   const { user } = useContext(AuthContext);
@@ -112,6 +113,10 @@ function TopBar() {
             >
               <span className="topbarLink">Timeline</span>
             </Link>
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              <span className="topbarLink">Home Page</span>
+            </Link>
+            <Logout />
           </div>
           <div className="topbarIcons">
             <div className="topbarIconItem">

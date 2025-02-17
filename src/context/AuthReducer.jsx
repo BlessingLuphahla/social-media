@@ -7,13 +7,11 @@ const AuthReducer = (state, action) => {
         error: false,
       };
     case "LOGIN_SUCCESS":
-      localStorage.setItem("user", JSON.stringify(action.payload));
       return {
-        user: action.payload,
+        user: action.payload, // No direct localStorage update here
         isFetching: false,
         error: false,
       };
-
     case "LOGIN_FAILURE":
       return {
         user: null,
@@ -21,13 +19,16 @@ const AuthReducer = (state, action) => {
         error: action.payload,
       };
     case "LOGOUT":
-      localStorage.removeItem("user"); // Clear user
       return {
         user: null,
         isFetching: false,
         error: false,
       };
-
+    case "UPDATE_USER":
+      return {
+        ...state,
+        user: action.payload, // Update user in state
+      };
     default:
       return state;
   }

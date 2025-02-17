@@ -1,0 +1,23 @@
+.logoutButton {
+  background-color: #ac0505; /* Red logout color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #ac0505d2; /* Darker red on hover */
+}
+
+.logoutButton:active {
+  background-color: #ac0505d2; /* Even darker when clicked */
+}
+
+.logoutButton:focus {
+  outline: none; /* Remove focus outline */
+}
