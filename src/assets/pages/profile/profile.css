@@ -64,7 +64,59 @@
 }
 
 @media (max-width: 760px) {
+  .profile {
+    flex-direction: column; /* Stack the profile components vertically */
+    align-items: center; /* Center the items */
+    padding: 10px; /* Add some padding to prevent content from touching edges */
+  }
 
-    
+  .profileCover {
+    height: 200px; /* Adjust the cover image height for smaller screens */
+  }
 
+  .profileCoverImg {
+    height: 200px; /* Adjust the image height to fit the smaller cover section */
+    object-fit: cover;
+  }
+
+  .profileUserImg {
+    width: 120px; /* Reduce the profile picture size */
+    height: 120px; /* Adjust height accordingly */
+    top: 120px; /* Adjust vertical position of the profile image */
+  }
+
+  .profileInfo {
+    margin-top: 150px; /* Adjust margin to position text properly */
+    align-items: center; /* Keep text centered */
+    width: 100%; /* Ensure the info section takes full width */
+  }
+
+  .profileInfoName {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .profileInfoDesc {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .profileRight {
+    flex: 1;
+    width: 100%;
+  }
+
+  .profileRightBottom {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profileRightBottomWrapper {
+    padding: 15px;
+  }
+
+  .profileRightBottomTitle {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
 }

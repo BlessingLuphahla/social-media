@@ -4,16 +4,17 @@ A social media feed application built with React, showcasing a list of posts wit
 
 ## Table of Contents
 
-* [Features](#features)
-* [Getting Started](#getting-started)
-* [Contributing](#contributing)
-* [License](#license)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
-* Display a list of posts with author, content, likes, and comments
-* Render individual posts with a `Post` component
-* Use a mock API to fetch post data
+- Display a list of posts with author, content, likes, and comments
+- Render individual posts with a `Post` component
+- Use a mock API to fetch post data
+- Mobile / Desktop responsive design
 
 ## Getting Started
 
@@ -21,7 +22,6 @@ A social media feed application built with React, showcasing a list of posts wit
 2. Install dependencies: `npm install` or `yarn install`
 3. Start the development server: `npm run dev` or `yarn start`
 4. Open your browser at `http://localhost:5173` or the path shown by the server in the terminal
-
 
 ## Contributing
 

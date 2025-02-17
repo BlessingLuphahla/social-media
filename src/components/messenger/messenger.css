@@ -118,3 +118,132 @@
   color: rgb(224, 220, 220);
   cursor: default;
 }
+
+/* Mobile devices (up to 600px) */
+@media only screen and (max-width: 600px) {
+  .messenger {
+    flex-direction: column;
+  }
+
+  .chatMenu,
+  .chatBox,
+  .chatOnline {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .chatBoxWrapper {
+    padding-top: 0;
+  }
+
+  .chatBoxBottom {
+    margin-top: 10px;
+  }
+
+  .chatMessageInput {
+    width: 100%;
+  }
+
+  .chatSubmitButton {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .chatMenuInput {
+    width: 100%;
+    padding-left: 15px;
+  }
+}
+
+/* Tablet devices (600px to 900px) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+  .messenger {
+    flex-direction: column;
+  }
+
+  .chatMenu,
+  .chatBox,
+  .chatOnline {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .chatMenuInput {
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  .chatBoxWrapper {
+    padding-top: 0;
+  }
+
+  .chatSubmitButton {
+    width: 100%;
+  }
+
+  .chatBoxBottom {
+    flex-direction: column;
+  }
+
+  .chatMessageInput {
+    width: 100%;
+  }
+}
+
+/* Small screens (900px to 1200px) */
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+  .messenger {
+    display: flex;
+  }
+
+  .chatMenu {
+    flex: 2;
+  }
+
+  .chatBox {
+    flex: 4;
+  }
+
+  .chatOnline {
+    flex: 3;
+  }
+
+  .chatBoxWrapper {
+    padding-top: 0;
+  }
+
+  .chatMessageInput {
+    width: 85%;
+  }
+
+  .chatSubmitButton {
+    width: 70px;
+  }
+}
+
+/* Large screens (above 1200px) */
+@media only screen and (min-width: 1201px) {
+  .messenger {
+    display: flex;
+  }
+
+  .chatMenu {
+    flex: 3;
+  }
+
+  .chatBox {
+    flex: 5;
+  }
+
+  .chatOnline {
+    flex: 3;
+  }
+
+  .chatMessageInput {
+    width: 85%;
+  }
+
+  .chatSubmitButton {
+    width: 70px;
+  }
+}

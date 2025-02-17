@@ -80,3 +80,145 @@
 .RegisterButton:disabled {
   cursor: not-allowed;
 }
+
+/* Mobile devices (up to 600px) */
+@media only screen and (max-width: 600px) {
+  .Register {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+
+  .RegisterWrapper {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .RegisterLeft,
+  .RegisterRight {
+    flex: 1;
+    align-items: center;
+  }
+
+  .RegisterLogo {
+    font-size: 35px;
+  }
+
+  .RegisterDesc {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .RegisterBox {
+    height: auto;
+    padding: 20px;
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+  }
+
+  .RegisterInput {
+    font-size: 16px;
+    padding-left: 15px;
+  }
+
+  .RegisterButton {
+    font-size: 14px;
+    padding: 12px;
+    width: 100%;
+  }
+}
+
+/* Tablet devices (600px to 900px) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+  .RegisterWrapper {
+    width: 85%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .RegisterLeft,
+  .RegisterRight {
+    flex: 1;
+  }
+
+  .RegisterLogo {
+    font-size: 40px;
+  }
+
+  .RegisterDesc {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .RegisterBox {
+    height: 500px;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .RegisterInput {
+    font-size: 16px;
+    padding-left: 15px;
+  }
+
+  .RegisterButton {
+    font-size: 16px;
+    padding: 15px;
+    width: 100%;
+  }
+}
+
+/* Small screens (900px to 1200px) */
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+  .RegisterWrapper {
+    width: 75%;
+  }
+
+  .RegisterLogo {
+    font-size: 45px;
+  }
+
+  .RegisterDesc {
+    font-size: 22px;
+  }
+
+  .RegisterBox {
+    height: 500px;
+    padding: 30px;
+    gap: 20px;
+  }
+
+  .RegisterButton {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
+
+/* Large screens (above 1200px) */
+@media only screen and (min-width: 1201px) {
+  .RegisterWrapper {
+    width: 70%;
+  }
+
+  .RegisterLogo {
+    font-size: 50px;
+  }
+
+  .RegisterDesc {
+    font-size: 24px;
+  }
+
+  .RegisterBox {
+    height: 500px;
+    padding: 30px;
+  }
+
+  .RegisterButton {
+    font-size: 16px;
+    padding: 15px;
+  }
+}

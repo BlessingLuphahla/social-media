@@ -53,7 +53,6 @@
   outline: none;
 }
 
-
 .loginButton:disabled {
   cursor: not-allowed;
 }
@@ -82,7 +81,6 @@
   cursor: not-allowed;
 }
 
-
 .loginForgot {
   text-align: center;
   color: var(--dark-red);
@@ -90,3 +88,145 @@
   margin: 5px 0px;
 }
 
+/* Mobile devices (up to 600px) */
+@media only screen and (max-width: 600px) {
+  .login {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+
+  .loginWrapper {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .loginLeft,
+  .loginRight {
+    flex: 1;
+    align-items: center;
+  }
+
+  .loginLogo {
+    font-size: 35px;
+  }
+
+  .loginDesc {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .loginBox {
+    height: auto;
+    padding: 20px;
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .loginInput {
+    font-size: 16px;
+    padding-left: 15px;
+  }
+
+  .loginButton {
+    font-size: 14px;
+    padding: 12px;
+    width: 100%;
+    margin: 10px 0px;
+  }
+
+  .loginForgot {
+    font-size: 14px;
+  }
+}
+
+/* Tablet devices (600px to 900px) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+  .loginWrapper {
+    width: 85%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .loginLeft,
+  .loginRight {
+    flex: 1;
+  }
+
+  .loginLogo {
+    font-size: 40px;
+  }
+
+  .loginDesc {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .loginBox {
+    height: 360px;
+    padding: 20px;
+  }
+
+  .loginInput {
+    font-size: 16px;
+    padding-left: 15px;
+  }
+
+  .loginButton {
+    font-size: 16px;
+    padding: 15px;
+    width: 100%;
+    margin: 50px 0px;
+  }
+}
+
+/* Small screens (900px to 1200px) */
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+  .loginWrapper {
+    width: 75%;
+  }
+
+  .loginLogo {
+    font-size: 45px;
+  }
+
+  .loginDesc {
+    font-size: 22px;
+  }
+
+  .loginBox {
+    height: 360px;
+    padding: 20px;
+  }
+
+  .loginButton {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
+
+/* Large screens (above 1200px) */
+@media only screen and (min-width: 1201px) {
+  .loginWrapper {
+    width: 70%;
+  }
+
+  .loginLogo {
+    font-size: 50px;
+  }
+
+  .loginDesc {
+    font-size: 24px;
+  }
+
+  .loginBox {
+    height: 360px;
+    padding: 20px;
+  }
+
+  .loginButton {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
