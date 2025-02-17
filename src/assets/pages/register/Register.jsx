@@ -25,16 +25,16 @@ function Register() {
       };
 
       try {
-        axios.post(import.meta.env.VITE_SERVER_URL+"/api/auth/register", user);
+        axios.post(
+          import.meta.env.VITE_SERVER_URL + "/api/auth/register",
+          user
+        );
         navigate("/login");
-          
       } catch (err) {
         console.log(err);
       }
     }
   };
-
-  
 
   return (
     <div className="Register">
@@ -43,6 +43,10 @@ function Register() {
           <h3 className="RegisterLogo">Redd Media</h3>
           <span className="RegisterDesc">
             Connect with friends and the world around you on Redd Media.
+          </span>
+          <span>
+            (Please note that i am using a render free tier to run this app so
+            the first request might be slow)
           </span>
         </div>
 
