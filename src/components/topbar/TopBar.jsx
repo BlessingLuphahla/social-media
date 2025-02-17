@@ -89,6 +89,7 @@ function TopBar() {
               {!isMobile && <span className="topbarIconBadge">2</span>}
             </Link>
           </div>
+          <Logout />
           <Link to={`/profile/${user.username}`} className="profileSection">
             <img
               src={
