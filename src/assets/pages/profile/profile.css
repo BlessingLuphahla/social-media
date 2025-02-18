@@ -67,26 +67,26 @@
   margin-bottom: 10px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 800px) {
   .profile {
-    flex-direction: column; /* Stack the profile components vertically */
-    align-items: center; /* Center the items */
-    padding: 10px; /* Add some padding to prevent content from touching edges */
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
   }
 
   .profileCover {
-    height: 200px; /* Adjust the cover image height for smaller screens */
+    height: 200px;
   }
 
   .profileCoverImg {
-    height: 200px; /* Adjust the image height to fit the smaller cover section */
+    height: 200px;
     object-fit: cover;
   }
 
   .profileUserImg {
-    width: 120px; /* Reduce the profile picture size */
-    height: 120px; /* Adjust height accordingly */
-    top: 120px; /* Adjust vertical position of the profile image */
+    width: 100px;
+    height: 100px;
+    top: 90px;
   }
 
   .profileInfo {
