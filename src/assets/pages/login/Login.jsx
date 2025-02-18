@@ -19,6 +19,7 @@ function Login() {
     );
   }
 
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -57,7 +58,7 @@ function Login() {
                 "Login"
               )}
             </button>
-            {error && <span className="loginError">{error.message}</span>}
+            {error && <span className="loginError">{error.response.data}</span>}
             <span className="loginForgot">Forgot Password?</span>
             <Link to="/register" className="loginButton">
               {isFetching ? (
