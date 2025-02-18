@@ -164,13 +164,17 @@ function Rightbar() {
     );
   };
 
-  return (
-    <div className="rightbar" style={{ display: isMobile && "none" }}>
-      <div className="rightbarWrapper">
-        {username ? <ProfileRightBar /> : !isMobile && <HomeRightBar />}
+  if (isMobile) {
+    if (username) return <ProfileRightBar />;
+  } else {
+    return (
+      <div className="rightbar">
+        <div className="rightbarWrapper">
+          {username ? <ProfileRightBar /> : !isMobile && <HomeRightBar />}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Rightbar;
