@@ -50,7 +50,7 @@ function Profile() {
                 src={
                   user.coverPic
                     ? user.coverPic
-                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739523073/2d7958edd5bd8d1ee78d05268f0f89eb_gftjah.jpg"
+                    : "https://res.cloudinary.com/djopur3de/image/upload/v1739864408/pexels-pixabay-210307_pdzu1i.jpg"
                 }
                 alt=""
               />
