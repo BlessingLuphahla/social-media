@@ -13,9 +13,14 @@ function ChatOnline({ onlineUserId, setCurrentChat, currentUser }) {
     const controller = new AbortController();
     const fetchConversation = async () => {
       try {
-        const res = await axios.get("/api/conversations/" + onlineUserId, {
-          signal: controller.signal,
-        });
+        const res = await axios.get(
+          import.meta.env.VITE_SERVER_URL +
+            "/api/conversations/" +
+            onlineUserId,
+          {
+            signal: controller.signal,
+          }
+        );
         setConversations(res.data);
       } catch (err) {
         if (err.name === "CanceledError") console.log("Request Was Cancelled");

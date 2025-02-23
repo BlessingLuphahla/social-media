@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   error: false,
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(INITIAL_STATE);
 
 export const AuthContextProvider = ({ children }) => {
@@ -15,10 +16,13 @@ export const AuthContextProvider = ({ children }) => {
 
   // 🔹 Sync `user` state with localStorage whenever it changes
   useEffect(() => {
-    if (state.user) {
-      localStorage.setItem("user", JSON.stringify(state.user));
-    } else {
-      localStorage.removeItem("user"); // Clear storage when logged out
+    if (typeof window !== "undefined") {
+      console.log("Updating localStorage with user:", state.user); // Debugging
+      if (state.user) {
+        localStorage.setItem("user", JSON.stringify(state.user));
+      } else {
+        localStorage.removeItem("user"); // Clear storage when logged out
+      }
     }
   }, [state.user]);
 

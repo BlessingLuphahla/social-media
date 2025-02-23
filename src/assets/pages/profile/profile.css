@@ -67,6 +67,30 @@
   margin-bottom: 10px;
 }
 
+.editProfileButton {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.editProfileButton:hover {
+  background-color: #45a049;
+}
+
+.scrollToBottomButton {
+  margin-top: 10px !important;
+  padding: 12px 16px !important;
+  background-color: #00bfff !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+}
+
 @media (max-width: 800px) {
   .profile {
     flex-direction: column;
@@ -79,13 +103,13 @@
   }
 
   .profileCoverImg {
-    height: 200px;
+    height: 310px;
     object-fit: cover;
   }
 
   .profileUserImg {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     top: 90px;
   }
 

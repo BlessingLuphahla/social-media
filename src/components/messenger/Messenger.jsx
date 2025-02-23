@@ -66,9 +66,12 @@ function Messenger() {
     const controller = new AbortController();
     const fetchConversations = async () => {
       try {
-        const res = await axios.get("/api/conversations/" + user?._id, {
-          signal: controller.signal,
-        });
+        const res = await axios.get(
+          import.meta.env.VITE_SERVER_URL + "/api/conversations/" + user?._id,
+          {
+            signal: controller.signal,
+          }
+        );
         setConversations(res.data);
       } catch (err) {
         if (err.name === "CanceledError") console.log("Request Was Cancelled");

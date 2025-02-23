@@ -7,6 +7,7 @@ const Register = lazy(() => import("./assets/pages/register/Register"));
 const Profile = lazy(() => import("./assets/pages/profile/Profile"));
 const Login = lazy(() => import("./assets/pages/login/Login"));
 const Messenger = lazy(() => import("./components/messenger/Messenger"));
+const Settings = lazy(() => import("./components/settings/Settings"));
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -39,6 +40,7 @@ function App() {
             path="/profile/:username"
             element={user ? <Profile /> : <Navigate to="/login" />}
           />
+          <Route path="/settings" element={user && <Settings />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

@@ -16,6 +16,10 @@ function TopBar() {
   const { isMobile } = useScreen();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const notAvailableAlert = () => {
+    alert("This feature is not available yet.");
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -57,6 +61,7 @@ function TopBar() {
               type="text"
               className="searchInput"
               placeholder="search for friends, post or video"
+              onChange={notAvailableAlert}
             />
           </div>
         </div>
@@ -80,11 +85,11 @@ function TopBar() {
               <PersonIcon /> New Friends
               {!isMobile && <span className="topbarIconBadge">1</span>}
             </Link>
-            <Link to="/notifications" className="topbarIconItem">
+            <Link className="topbarIconItem" onClick={notAvailableAlert}>
               <NotificationsIcon /> Notifications
               {!isMobile && <span className="topbarIconBadge">1</span>}
             </Link>
-            <Link to="/messenger" className="topbarIconItem">
+            <Link className="topbarIconItem" onClick={notAvailableAlert}>
               <ChatIcon /> Messages
               {!isMobile && <span className="topbarIconBadge">2</span>}
             </Link>
@@ -119,7 +124,7 @@ function TopBar() {
             <Logout />
           </div>
           <div className="topbarIcons">
-            <div className="topbarIconItem">
+            <div className="topbarIconItem" onClick={notAvailableAlert}>
               <PersonIcon />
               <span className="topbarIconBadge">1</span>
             </div>
@@ -132,7 +137,7 @@ function TopBar() {
               </Link>
               <span className="topbarIconBadge">2</span>
             </div>
-            <div className="topbarIconItem">
+            <div className="topbarIconItem" onClick={notAvailableAlert}>
               <NotificationsIcon />
               <span className="topbarIconBadge">1</span>
             </div>

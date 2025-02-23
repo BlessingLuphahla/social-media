@@ -1,0 +1,109 @@
+.settings {
+  display: flex;
+  background-color: #f5f5f5; /* Light gray background */
+  min-height: 95vh;
+  width: 100%;
+}
+
+.sidebar {
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
+
+.settingsWrapper {
+  flex-grow: 4; /* Take up remaining space */
+  padding: 20px;
+  max-width: 2000px; /* Limit the width for better readability */
+  margin: 0 auto; /* Center the content */
+}
+
+.settingsWrapper h1 {
+  margin-bottom: 20px;
+  color: #333; /* Dark gray for better contrast */
+  font-weight: 600;
+}
+
+.formGroup {
+  margin-bottom: 15px; /* Reduced margin */
+}
+
+.formGroup label {
+  display: block;
+  font-size: 14px; /* Smaller font size */
+  margin-bottom: 6px;
+  color: #555; /* Medium gray for labels */
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 8px; /* Smaller padding */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 4px;
+  background-color: #fff; /* White background */
+  color: #333; /* Dark gray text */
+  font-size: 14px;
+  outline: none; /* Remove default outline */
+  transition: border-color 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  border-color: #ff4d4d; /* Red border on focus */
+}
+
+.formGroup input::placeholder {
+  color: #999; /* Light gray placeholder */
+}
+
+.formGroup select {
+  appearance: none;
+  background-color: #fff;
+}
+
+.coverPreview {
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #ddd; /* Light gray border */
+}
+
+button {
+  padding: 8px 16px; /* Smaller padding */
+  background-color: #ff4d4d; /* Red button */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Smaller font size */
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e60000; /* Darker red on hover */
+}
+
+button:disabled {
+  background-color: #ccc; /* Gray for disabled state */
+  cursor: not-allowed;
+}
+
+.error {
+  color: #ff4d4d; /* Red for errors */
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.success {
+  color: #00cc66; /* Green for success */
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 600px) {
+  .settingsWrapper {
+    width: 800px;
+  }
+}

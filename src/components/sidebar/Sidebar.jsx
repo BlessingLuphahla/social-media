@@ -46,48 +46,54 @@ function Sidebar() {
 
   if (isMobile) return;
 
+  const notAvailableAlert = () => {
+    alert("This feature is not available yet.");
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         <ul className="sidebarList">
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <RssFeed className="sidebarIcon"></RssFeed>
             <span className="sidebarListItemText">Feed</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <Chat className="sidebarIcon"></Chat>
             <span className="sidebarListItemText">Chats</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <PlayCircleFilled className="sidebarIcon"></PlayCircleFilled>
             <span className="sidebarListItemText">Videos</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <Group className="sidebarIcon"></Group>
             <span className="sidebarListItemText">Groups</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <Bookmark className="sidebarIcon"></Bookmark>
             <span className="sidebarListItemText">Bookmarks</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <Help className="sidebarIcon"></Help>
             <span className="sidebarListItemText">Questions</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <Work className="sidebarIcon"></Work>
             <span className="sidebarListItemText">Jobs</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <Event className="sidebarIcon"></Event>
             <span className="sidebarListItemText">Events</span>
           </li>
-          <li className="sidebarListItem">
+          <li className="sidebarListItem" onClick={notAvailableAlert}>
             <School className="sidebarIcon"></School>
             <span className="sidebarListItemText">Courses</span>
           </li>
         </ul>
-        <button className="sidebarButton">Show More</button>
+        <button className="sidebarButton" onClick={notAvailableAlert}>
+          Show More
+        </button>
         <hr className="sidebarHr" />
       </div>
       <ul className="sidebarFriendList">
@@ -107,13 +113,13 @@ function Sidebar() {
         ))}
       </ul>
 
-      <div className="sidebarFooter">
+      {/* <div className="sidebarFooter">
         <img src={""} alt="" className="sidebarFooterImg" />
         <div className="sidebarFooterInfo">
           <span className="sidebarFooterName">Redd Axe</span> <br />
           <span className="sidebarFooterTitle">Software Engineer</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

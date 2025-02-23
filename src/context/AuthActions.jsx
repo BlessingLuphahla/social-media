@@ -17,6 +17,7 @@ export const Logout = (user) => ({
   payload: user,
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const updateUser = (user) => ({
   type: "UPDATE_USER",
   payload: user,
